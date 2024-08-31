@@ -13,9 +13,9 @@
       NavBar,
     },
   };
-  </script>
+</script>
   
-  <style scoped>
+<style scoped>
   /* Optional: Add any layout-specific styles here */
 </style>
   

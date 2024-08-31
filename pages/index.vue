@@ -1,9 +1,8 @@
 <template>
-
+    <ProjectDisplayBox
+        name="Project1"
+    />
 </template>
 
 <script>
-    export default {
-        layout: 'default', // Use a different layout
-    };
 </script>
