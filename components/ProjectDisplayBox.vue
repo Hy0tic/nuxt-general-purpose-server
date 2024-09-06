@@ -12,8 +12,8 @@
 // Type-safe props definition
 interface Props {
   name: string;
-  description: string;
-  link: string;
+//   description: string;
+//   link: string;
 }
 
 const props = defineProps<Props>();

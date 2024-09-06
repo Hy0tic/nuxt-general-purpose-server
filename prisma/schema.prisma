@@ -18,5 +18,5 @@ model Photo {
   Url   String
   Title String
   Description String
-  UploadDate DateTime
+  UploadDate DateTime @default(now())
 }
