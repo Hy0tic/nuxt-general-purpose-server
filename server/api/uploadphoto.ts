@@ -4,6 +4,7 @@ import { PutObjectCommand } from '@aws-sdk/client-s3';
 import formidable from 'formidable';
 import { s3Client } from "../utils/R2";
 import mime from "mime-types";
+import { v4 as uuidv4 } from 'uuid';
 import * as fs from 'fs'; // Importing fs module to handle file streams
 import * as path from "path";
 
@@ -45,7 +46,7 @@ export default defineEventHandler(async (event) => {
 	  // Upload the file to R2
 	  const uploadParams = {
 		Bucket: process.env.CLOUDFLARE_R2_BUCKET || '',
-		Key: file.originalFilename || 'uploaded-file', // Provide a default fallback key name
+		Key: uuidv4(), // Provide a default fallback key name
 		Body: fileStream,
 		ContentType: mimeType
 	  };
