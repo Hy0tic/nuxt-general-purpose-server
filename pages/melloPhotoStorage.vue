@@ -25,12 +25,15 @@
 
             carousel goes here
         </div>
+
+        <UploadBox/>
     </div>
 </template>
 
 <script setup lang="ts">
 import FileUpload from 'primevue/fileupload';
 import Button from 'primevue/button';
+import UploadBox from '~/components/UploadBox.vue';
 
 const upload = () => {
 

@@ -10,8 +10,11 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.645.0",
     "@primevue/themes": "^4.0.5",
     "@prisma/client": "5.19.0",
+    "formidable": "v3",
+    "mime-types": "^2.1.35",
     "nuxt": "^3.13.0",
     "primevue": "^4.0.5",
     "vue": "latest"
