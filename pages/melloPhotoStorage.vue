@@ -18,7 +18,6 @@
                 severity="secondary"
             />
         </div>
-
         <div class="h-16 w-72 flex bg-zinc-900 rounded-lg">
             <h1>Random Image</h1>
             <br>
