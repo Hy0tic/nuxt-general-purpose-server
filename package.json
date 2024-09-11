@@ -22,6 +22,9 @@
   },
   "devDependencies": {
     "@primevue/nuxt-module": "^4.0.5",
+    "@types/formidable": "^3.4.5",
+    "@types/mime-types": "^2.1.4",
+    "@types/uuid": "^10.0.0",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.41",
     "prisma": "^5.19.0",
