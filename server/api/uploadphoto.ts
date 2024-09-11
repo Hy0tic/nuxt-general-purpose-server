@@ -54,7 +54,7 @@ export default defineEventHandler(async (event) => {
 	  // Execute the upload
 	  const uploadResult = await s3Client.send(new PutObjectCommand(uploadParams));
 	  return { message: 'Upload successful', data: uploadResult };
-	} catch (error) {
+	} catch (error: any) {
 	  console.error('Error uploading to R2:', error);
 	  throw new Error(`Upload failed: ${error.message}`);
 	}
