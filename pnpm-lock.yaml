@@ -15,8 +15,8 @@ importers:
         specifier: ^4.0.5
         version: 4.0.5
       '@prisma/client':
-        specifier: 5.19.0
-        version: 5.19.0(prisma@5.19.0)
+        specifier: 5.19.1
+        version: 5.19.1(prisma@5.19.0)
       formidable:
         specifier: v3
         version: 3.5.1
@@ -1038,8 +1038,8 @@ packages:
     resolution: {integrity: sha512-cRrAhOapOT8eFCTDwNdB/acg2ZEEkn7y6h6p188PYSjJsWnYK+D8eI1Js1ZB5HwWo4sWs3oR3Sy8bPwejnGbAw==}
     engines: {node: '>=12.11.0'}
 
-  '@prisma/client@5.19.0':
-    resolution: {integrity: sha512-CzOpau+q1kEWQyoQMvlnXIHqPvwmWbh48xZ4n8KWbAql0p8PC0BIgSTYW5ncxXa4JSEff0tcoxSZB874wDstdg==}
+  '@prisma/client@5.19.1':
+    resolution: {integrity: sha512-x30GFguInsgt+4z5I4WbkZP2CGpotJMUXy+Gl/aaUjHn2o1DnLYNTA+q9XdYmAQZM8fIIkvUiA2NpgosM3fneg==}
     engines: {node: '>=16.13'}
     peerDependencies:
       prisma: '*'
@@ -5134,7 +5134,7 @@ snapshots:
     dependencies:
       '@primeuix/styled': 0.0.5
 
-  '@prisma/client@5.19.0(prisma@5.19.0)':
+  '@prisma/client@5.19.1(prisma@5.19.0)':
     optionalDependencies:
       prisma: 5.19.0
 

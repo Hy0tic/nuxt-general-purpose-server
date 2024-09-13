@@ -2,7 +2,7 @@
 import { defineEventHandler } from 'h3';
 import { PutObjectCommand } from '@aws-sdk/client-s3';
 import formidable from 'formidable';
-import { BucketName, CloudflareAccountId, s3Client } from "../utils/R2";
+import { s3Client } from "../utils/R2";
 import mime from "mime-types";
 import { v4 as uuidv4 } from 'uuid';
 import * as fs from 'fs'; // Importing fs module to handle file streams
@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
   const form = formidable({
     multiples: false,
     keepExtensions: true,
-    maxFileSize: 50 * 1024 * 1024, // Set max file size (e.g., 50MB)
+    maxFileSize: (50 * 1024 * 1024) * 2, // Set max file size (e.g., 50MB)
   });
 
   try {

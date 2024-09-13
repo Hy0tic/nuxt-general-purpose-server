@@ -12,7 +12,7 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.645.0",
     "@primevue/themes": "^4.0.5",
-    "@prisma/client": "5.19.0",
+    "@prisma/client": "5.19.1",
     "formidable": "v3",
     "mime-types": "^2.1.35",
     "nuxt": "^3.13.0",
