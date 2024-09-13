@@ -7,7 +7,7 @@ import mime from "mime-types";
 import { v4 as uuidv4 } from 'uuid';
 import * as fs from 'fs'; // Importing fs module to handle file streams
 import * as path from "path";
-import { InsertPhotoIntoDb } from '../utils/MsSqlDb';
+import { InsertPhotoIntoDb } from '../utils/PostgresSqlDb';
 
 export default defineEventHandler(async (event) => {
   // Create a new formidable form instance
