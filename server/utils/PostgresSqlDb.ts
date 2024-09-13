@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { Photo } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -38,3 +39,16 @@ export const InsertPhotoIntoDb = async (
     }
   };
   
+
+export async function FetchRandomPhoto(): Promise<Photo> {
+  // Fetch a random photo
+  const result = await prisma.$queryRaw<Photo[]>`
+    SELECT * 
+    FROM "Photo"
+    ORDER BY RANDOM()
+    LIMIT 1;
+  `;
+
+  // Return the first item from the result array or null if no items are found
+  return result[0];
+}
