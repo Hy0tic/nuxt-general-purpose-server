@@ -14,9 +14,9 @@ datasource db {
 }
 
 model Photo {
-  Id    Int    @id @default(autoincrement())
-  FileKey   String
-  Title String
-  Description String
-  UploadDate DateTime @default(now())
+  Id              Int    @id @default(autoincrement())
+  FileKey         String
+  Title           String
+  Description     String
+  UploadDate      DateTime @default(now())
 }
