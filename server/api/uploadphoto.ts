@@ -63,8 +63,7 @@ export default defineEventHandler(async (event) => {
     // Execute the upload
     const uploadResult = await s3Client.send(new PutObjectCommand(uploadParams));
 
-	const r2Url = ConstructR2Url(generatedFileKey);
-	//InsertPhotoIntoDb(r2Url, title, description);
+	InsertPhotoIntoDb(generatedFileKey, title, description);
 
     return { message: 'Upload successful', data: uploadResult };
   } catch (error: any) {
@@ -73,8 +72,7 @@ export default defineEventHandler(async (event) => {
   }
 });
 
-function ConstructR2Url(fileKey: string){
-
-	var baseUrl = `https://${BucketName}.${CloudflareAccountId}.r2.cloudflarestorage.com/${fileKey}`;
-	return baseUrl;
-}
+// function ConstructR2Url(fileKey: string){
+// 	var baseUrl = `https://${BucketName}.${CloudflareAccountId}.r2.cloudflarestorage.com/${fileKey}`;
+// 	return baseUrl;
+// }

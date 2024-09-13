@@ -1,6 +1,6 @@
 
 interface Photo {
-    Url: string,
+    FileKey: string,
     Title: string,
     Description: string,
     DateUpload: string
