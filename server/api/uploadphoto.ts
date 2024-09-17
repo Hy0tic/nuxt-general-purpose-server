@@ -10,6 +10,13 @@ import * as path from "path";
 import { InsertPhotoIntoDb } from '../utils/PostgresSqlDb';
 
 export default defineEventHandler(async (event) => {
+	if (!event.context.session) {
+		throw createError({
+			message: "Unauthorized",
+			statusCode: 401
+		});
+	}
+
   // Create a new formidable form instance
   const form = formidable({
     multiples: false,
@@ -71,8 +78,3 @@ export default defineEventHandler(async (event) => {
     throw new Error(`Upload failed: ${error.message}`);
   }
 });
-
-// function ConstructR2Url(fileKey: string){
-// 	var baseUrl = `https://${BucketName}.${CloudflareAccountId}.r2.cloudflarestorage.com/${fileKey}`;
-// 	return baseUrl;
-// }
