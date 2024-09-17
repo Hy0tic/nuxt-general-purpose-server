@@ -34,7 +34,20 @@ export default eventHandler(async (event) => {
 	});
 	const userId = generateIdFromEntropySize(10); // 16 characters long
 
-	// TODO: check if username is already used
+  const usernameTaken = (await prisma.user.findMany({
+    where: {
+      username: username
+    }
+  })).length > 0;
+
+  if(usernameTaken)
+  {
+		throw createError({
+			message: "Username Taken",
+			statusCode: 409
+		});
+  }
+
   await prisma.user.create({
     data: {
       id: userId,
