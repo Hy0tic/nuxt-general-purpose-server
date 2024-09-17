@@ -1,5 +1,5 @@
 
-import { S3Client, ListBucketsCommand } from "@aws-sdk/client-s3"
+import { S3Client } from "@aws-sdk/client-s3"
 
 export const CloudflareAccountId = process.env.CLOUDFLARE_R2_ACCOUNT_ID;
 export const BucketName = process.env.CLOUDFLARE_R2_BUCKET;

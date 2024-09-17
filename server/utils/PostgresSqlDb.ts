@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { Photo } from "@prisma/client";
 
-const prisma = new PrismaClient();
+export const prisma = new PrismaClient();
 
 export const InsertPhotoIntoDb = async (
     FileKey: string,
