@@ -1,6 +1,7 @@
 <template>
     <ProjectDisplayBox
-        name="Project1"
+        name="Mello Photo Storage"
+        path="/melloPhotoStorage"
     />
 </template>
 
