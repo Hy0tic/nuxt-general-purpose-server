@@ -1,17 +1,34 @@
 <template>
-  <form @submit.prevent="uploadFile" class="border-solid border-2 border-slate-600 rounded-lg w-80 h-96">
-    <input type="file" ref="fileInput" @change="handleFileChange" />
-    <div class="flex flex-col gap-20">
-      <input type="text" v-model="title" placeholder="Enter title" />
-      <textarea v-model="description" placeholder="Enter description"></textarea>
-      <Button type="submit" :disabled="!selectedFile">Upload</Button>
-    </div>
+  <form @submit.prevent="uploadFile" class="rounded-lg w-80 h-96 bg-[rgb(24,24,27)]">
+
+    <input 
+      class="m-10"
+      type="file" 
+      ref="fileInput" 
+      @change="handleFileChange" 
+    />
+
+    <div class="flex flex-col gap-10 m-5">
+        <InputGroup>
+          <InputText v-model="title" placeholder="Enter title" />
+        </InputGroup>
+
+        <InputGroup>
+          <InputText v-model="description" placeholder="Enter description"></InputText>
+        </InputGroup>
+
+        <Button type="submit" :disabled="!selectedFile">Upload</Button>
+      </div>
   </form>
+
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import Button from 'primevue/button';
+import InputGroup from 'primevue/inputgroup';
+import InputText from 'primevue/inputtext';
+
 // Reactive references for file, title, and description
 const selectedFile = ref(null);
 const title = ref('');
