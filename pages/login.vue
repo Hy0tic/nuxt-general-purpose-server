@@ -17,7 +17,11 @@ async function login(e: Event) {
 <template>
   <div class="flex justify-center items-center">
     <div class="rounded-lg w-80 h-80 bg-[rgb(24,24,27)] flex flex-col justify-center items-center mt-48">
-      <h1>Sign in</h1>
+		
+      <h1 class="text-2xl font-semibold">
+		Sign in
+	  </h1>
+
       <form method="post" action="/api/auth/login" @submit.prevent="login" class="m-5 flex flex-col">
         <label htmlFor="username">Username</label>
         <InputText name="username" id="username" />
