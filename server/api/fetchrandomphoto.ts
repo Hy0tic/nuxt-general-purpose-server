@@ -14,6 +14,6 @@ export default defineEventHandler(async (event) => {
 })
 
 function ConstructR2Url(fileKey: string): string{
-	var url = `${BucketDomain}/${fileKey}`
+	var url = `https://${BucketDomain}/${fileKey}`
 	return url;
 }
