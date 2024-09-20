@@ -15,15 +15,19 @@
 </template>
 
 <script setup lang="ts">
-// import FileUpload from 'primevue/fileupload';
-// import Button from 'primevue/button';
 import UploadBox from '~/components/UploadBox.vue';
 
-// const upload = () => {
+const response = await $fetch("/api/auth/amIauthenticated", {
+    method: "GET"
+});
 
-// };
 
-// const onUpload = () => {
+if (response.fresh !== true && process.client) {
+    console.log("not fresh");
+    navigateTo('/login'); // Adjust the route as necessary
+}
 
-// }
+definePageMeta({
+  middleware: []
+});
 </script>
