@@ -69,9 +69,9 @@ async function logout() {
 
 	<div 
 		v-if="isLoggedIn"
-		class="rounded-lg w-80 h-80 bg-[rgb(24,24,27)] flex flex-col justify-center items-center mt-48"
+		class="rounded-lg w-80 h-80 bg-[rgb(24,24,27)] flex flex-col justify-center items-center mt-48 gap-6"
 	>
-		Logged in as {{ username }}
+		<div>Logged in as {{ username }}</div>
 		<Button
 			type="button"
 			@click="logout"
