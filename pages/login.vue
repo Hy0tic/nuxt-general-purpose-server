@@ -45,7 +45,7 @@ async function logout() {
 		method: "POST"
 	});
 
-	await router.push("/login");
+	router.go(0)
 }
 
 </script>
