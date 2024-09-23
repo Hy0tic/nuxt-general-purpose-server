@@ -15,9 +15,9 @@ export default eventHandler(async (event) => {
 
     console.log(otp)
 
-    const temptToken = getCookie(event, "tempToken");
+    const temptTokenFromCookie = getCookie(event, "tempToken");
 
-    if(!temptToken){
+    if(!temptTokenFromCookie){
         return {
             statusCode: 400
         }
@@ -25,7 +25,7 @@ export default eventHandler(async (event) => {
 
     const tempToken = await prisma.tempToken.findFirst({
         where: {
-            token: temptToken
+            token: temptTokenFromCookie
         }
     });
 
@@ -67,7 +67,8 @@ export default eventHandler(async (event) => {
                 }
             })
 
-            // TODO: remove temp token from cookie
+            // remove temp token from cookie
+            appendHeader(event, "Set-Cookie", `tempToken=; HttpOnly; Path=/; Max-Age=10;`)
 
             return {
                 statusCode: 200,
