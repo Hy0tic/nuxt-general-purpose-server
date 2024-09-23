@@ -14,20 +14,21 @@ datasource db {
 }
 
 model Photo {
-  Id              Int    @id @default(autoincrement())
-  FileKey         String
-  Title           String
-  Description     String
-  UploadDate      DateTime @default(now())
+  Id          Int      @id @default(autoincrement())
+  FileKey     String
+  Title       String
+  Description String
+  UploadDate  DateTime @default(now())
 }
 
 model User {
-  id                  String @id
-  sessions            Session[]
-  username            String
-  password_hash       String
-  two_factor_secret   String?
-  email               String?
+  id                String      @id
+  sessions          Session[]
+  username          String
+  password_hash     String
+  two_factor_secret String?
+  email             String?
+  TempToken         TempToken[]
 }
 
 model Session {
@@ -35,4 +36,10 @@ model Session {
   userId    String
   expiresAt DateTime
   user      User     @relation(references: [id], fields: [userId], onDelete: Cascade)
+}
+
+model TempToken {
+  token  String @id
+  userId String
+  user   User   @relation(references: [id], fields: [userId], onDelete: Cascade)
 }

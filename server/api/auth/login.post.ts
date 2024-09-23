@@ -23,11 +23,6 @@ export default eventHandler(async (event) => {
 		});
 	}
 
-	// const existingUser = await db
-	// 	.table("username")
-	// 	.where("username", "=", username.toLowerCase())
-	// 	.get();
-
     const existingUser = await prisma.user.findFirst({
         where: {
             username: username.toLowerCase()
@@ -56,6 +51,7 @@ export default eventHandler(async (event) => {
 		outputLen: 32,
 		parallelism: 1
 	});
+
 	if (!validPassword) {
 		throw createError({
 			message: "Incorrect username or password",
@@ -63,6 +59,33 @@ export default eventHandler(async (event) => {
 		});
 	}
 
-	const session = await lucia.createSession(existingUser.id, {});
-	appendHeader(event, "Set-Cookie", lucia.createSessionCookie(session.id).serialize());
+	
+	if(existingUser.two_factor_secret){
+		const tempToken = crypto.randomUUID();
+		
+		// set this temp token in postgresql
+		await prisma.tempToken.create({
+			data: {
+				token: tempToken,
+				userId: existingUser.id
+			}
+		})
+
+		appendHeader(event, "Set-Cookie", `tempToken=${tempToken}; HttpOnly; Path=/; Max-Age=900;`)
+		return {
+			statusCode: 200,
+			message: 'verify TOTP to log in',
+			requiresTOTP: true
+		}
+	}
+	else {
+		const session = await lucia.createSession(existingUser.id, {});
+		appendHeader(event, "Set-Cookie", lucia.createSessionCookie(session.id).serialize());
+		return {
+			statusCode: 200,
+			message: 'log in successful!',
+			requiresTOTP: false
+		}
+	}
 });
+

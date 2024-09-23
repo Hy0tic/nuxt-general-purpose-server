@@ -25,11 +25,19 @@ onBeforeMount(async () => {
 
 
 async function login(e: Event) {
-    await $fetch("/api/auth/login", {
+    const response = await $fetch("/api/auth/login", {
       method: "POST",
       body: new FormData(e.target as HTMLFormElement)
     });
-    await router.push("/"); // Navigate to home after successful login
+
+	if (response && response.statusCode === 200 && !response.requiresTOTP) {
+      // Navigate to home if login is successful
+      await router.push("/");
+    } 
+	else if (response && response.statusCode === 200 && response.requiresTOTP) {
+		await router.push("/TOTP")
+	}
+
 }
 
 async function logout() {
