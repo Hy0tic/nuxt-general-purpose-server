@@ -13,7 +13,9 @@ export const lucia = new Lucia(adapter, {
 	getUserAttributes: (attributes: any) => {
 		return {
 			// attributes has the type of DatabaseUserAttributes
-			username: attributes.username
+			username: attributes.username,
+			email:attributes.email,
+			setupTwoFactor: attributes.two_factor_secret !== null
 		};
 	}
 });
@@ -22,9 +24,11 @@ export const lucia = new Lucia(adapter, {
 declare module "lucia" {
 	interface Register {
 		Lucia: typeof lucia;
+		DatabaseUserAttributes: {
+			username: string;
+			email: string;
+			two_factor_secret: string | null;
+		};
 	}
-}
-
-interface DatabaseUserAttributes {
-	username: string;
+	
 }

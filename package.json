@@ -20,7 +20,9 @@
     "lucia": "^3.2.0",
     "mime-types": "^2.1.35",
     "nuxt": "^3.13.0",
+    "oslo": "^1.2.1",
     "primevue": "^4.0.5",
+    "qrcode": "^1.5.4",
     "uuid": "^10.0.0",
     "vue": "latest"
   },
@@ -28,6 +30,7 @@
     "@primevue/nuxt-module": "^4.0.5",
     "@types/formidable": "^3.4.5",
     "@types/mime-types": "^2.1.4",
+    "@types/qrcode": "^1.5.5",
     "@types/uuid": "^10.0.0",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.41",
