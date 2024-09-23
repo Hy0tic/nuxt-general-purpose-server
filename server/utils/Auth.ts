@@ -14,7 +14,6 @@ export const lucia = new Lucia(adapter, {
 		return {
 			// attributes has the type of DatabaseUserAttributes
 			username: attributes.username,
-			email:attributes.email,
 			setupTwoFactor: attributes.two_factor_secret !== null
 		};
 	}
@@ -26,7 +25,6 @@ declare module "lucia" {
 		Lucia: typeof lucia;
 		DatabaseUserAttributes: {
 			username: string;
-			email: string;
 			two_factor_secret: string | null;
 		};
 	}
