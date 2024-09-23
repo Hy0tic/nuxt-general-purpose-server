@@ -52,7 +52,8 @@ export default eventHandler(async (event) => {
     data: {
       id: userId,
       username: username,
-      password_hash: passwordHash
+      password_hash: passwordHash,
+	  two_factor_secret: null
     },
   });
 
