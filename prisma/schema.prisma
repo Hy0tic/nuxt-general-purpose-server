@@ -27,9 +27,7 @@ model User {
   username          String
   password_hash     String
   two_factor_secret String?
-  email             String?
   TempToken         TempToken[]
-  EmailCode         EmailCode?
 }
 
 model Session {
@@ -43,13 +41,4 @@ model TempToken {
   token  String @id
   userId String
   user   User   @relation(references: [id], fields: [userId], onDelete: Cascade)
-}
-
-model EmailCode {
-  id        String   @id
-  code      String
-  userId    String   @unique
-  user      User     @relation(references: [id], fields: [userId], onDelete: Cascade)
-  email     String
-  expiresAt DateTime
 }
