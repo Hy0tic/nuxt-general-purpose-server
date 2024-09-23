@@ -21,7 +21,6 @@ async function verifyTOTP(e: Event) {
       body: new FormData(e.target as HTMLFormElement)
     });
 
-    console.log(response)
 
     if(response && response.statusCode === 200){
         await router.push("/");

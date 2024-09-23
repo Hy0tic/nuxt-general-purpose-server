@@ -29,7 +29,7 @@
   });
   
   if (response.fresh !== true && process.client) {
-      console.log("not fresh");
+
       navigateTo('/login'); // Adjust the route as necessary
   }
   

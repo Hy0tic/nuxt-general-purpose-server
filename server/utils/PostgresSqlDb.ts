@@ -22,7 +22,7 @@ export const InsertPhotoIntoDb = async (
             UploadDate: new Date(),
           },
         });
-        console.log('Photo inserted successfully');
+
         break; // Exit loop on success
       } catch (error: any) {
         attempts++;

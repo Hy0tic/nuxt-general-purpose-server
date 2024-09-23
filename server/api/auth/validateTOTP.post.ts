@@ -7,8 +7,6 @@ export default eventHandler(async (event) => {
 	const formData = await readFormData(event);
     const otp = formData.get("TOTP")?.toString().replace(/\s+/g, '') ?? "";
 
-    console.log(otp)
-
     const temptTokenFromCookie = getCookie(event, "tempToken");
 
     if(!temptTokenFromCookie){
@@ -37,7 +35,6 @@ export default eventHandler(async (event) => {
 
     
     const twoFactorSecret = decodeHex(userRecord?.two_factor_secret ?? ""); 
-    console.log(twoFactorSecret ?? "")
 
     if(twoFactorSecret)
     {
@@ -47,7 +44,6 @@ export default eventHandler(async (event) => {
             period: oneHour
         }).verify(otp, twoFactorSecret);
 
-        console.log("valid OTP: ", validOTP);
         if(validOTP && tempToken?.userId)
         {
             // create session 

@@ -15,7 +15,7 @@ onMounted(async () => {
   try {
     const response = await fetch('/api/auth/generateQRcode');
     const data = await response.json();
-    console.log(data)
+
     qrCode.value = data.result; // Set the QR code data URL
   } catch (error) {
     console.error('Error fetching QR code:', error);
