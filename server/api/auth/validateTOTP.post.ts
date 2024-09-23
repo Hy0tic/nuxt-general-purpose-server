@@ -4,12 +4,6 @@ import { TOTPController } from "oslo/otp";
 
 
 export default eventHandler(async (event) => { 
-    // const user = event.context.user;
-    // if (!user) {
-    //     return new Response(null, {
-    //         status: 401
-    //     });
-    // }
 	const formData = await readFormData(event);
     const otp = formData.get("TOTP")?.toString().replace(/\s+/g, '') ?? "";
 
@@ -29,7 +23,7 @@ export default eventHandler(async (event) => {
         }
     });
 
-    // todo: check if temp token expires
+    // TODO: check if temp token expires
     
     const userRecord = await prisma.user.findUnique({
         where: {
