@@ -23,7 +23,7 @@ export default eventHandler(async (event) => {
     
 
     // pass the website's name and the user identifier (e.g. email, username)
-    const uri = createTOTPKeyURI("nuxt-general-purpose-server", user.email, twoFactorSecret);
+    const uri = createTOTPKeyURI("nuxt-general-purpose-server", user.username, twoFactorSecret);
 
     // use any image generator
     const qrcode = await generateQR(uri);
