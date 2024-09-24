@@ -6,7 +6,7 @@ import InputText from "primevue/inputtext";
 async function signup(e: Event) {
 	await $fetch("/api/auth/signup", {
 		method: "POST",
-		body: new FormData(e.target as HTMLFormElement),
+		body: new FormData(e.target as HTMLFormElement)
 	});
 	await navigateTo("/");
 }

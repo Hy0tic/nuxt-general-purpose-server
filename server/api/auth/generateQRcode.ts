@@ -7,25 +7,25 @@ export default eventHandler(async (event) => {
 
 	if (!user) {
 		return new Response(null, {
-			status: 401,
+			status: 401
 		});
 	}
 
 	const twoFactorSecret = crypto.getRandomValues(new Uint8Array(20));
 	await prisma.user.update({
 		where: {
-			id: user.id,
+			id: user.id
 		},
 		data: {
-			two_factor_secret: encodeHex(twoFactorSecret),
-		},
+			two_factor_secret: encodeHex(twoFactorSecret)
+		}
 	});
 
 	// pass the website's name and the user identifier (e.g. email, username)
 	const uri = createTOTPKeyURI(
 		"nuxt-general-purpose-server",
 		user.username,
-		twoFactorSecret,
+		twoFactorSecret
 	);
 
 	// use any image generator
@@ -33,7 +33,7 @@ export default eventHandler(async (event) => {
 
 	return {
 		result: qrcode,
-		status: 200,
+		status: 200
 	};
 });
 

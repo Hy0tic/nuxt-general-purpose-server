@@ -12,7 +12,7 @@ export default eventHandler(async (event) => {
 	) {
 		throw createError({
 			message: "Incorrect username or password",
-			statusCode: 400,
+			statusCode: 400
 		});
 	}
 	const password = formData.get("password");
@@ -23,14 +23,14 @@ export default eventHandler(async (event) => {
 	) {
 		throw createError({
 			message: "Incorrect username or password",
-			statusCode: 400,
+			statusCode: 400
 		});
 	}
 
 	const existingUser = await prisma.user.findFirst({
 		where: {
-			username: username.toLowerCase(),
-		},
+			username: username.toLowerCase()
+		}
 	});
 
 	if (!existingUser) {
@@ -45,7 +45,7 @@ export default eventHandler(async (event) => {
 		// If usernames are public, you may outright tell the user that the username is invalid.
 		throw createError({
 			message: "Incorrect username or password",
-			statusCode: 400,
+			statusCode: 400
 		});
 	}
 
@@ -53,13 +53,13 @@ export default eventHandler(async (event) => {
 		memoryCost: 19456,
 		timeCost: 2,
 		outputLen: 32,
-		parallelism: 1,
+		parallelism: 1
 	});
 
 	if (!validPassword) {
 		throw createError({
 			message: "Incorrect username or password",
-			statusCode: 400,
+			statusCode: 400
 		});
 	}
 
@@ -70,31 +70,31 @@ export default eventHandler(async (event) => {
 		await prisma.tempToken.create({
 			data: {
 				token: tempToken,
-				userId: existingUser.id,
-			},
+				userId: existingUser.id
+			}
 		});
 
 		appendHeader(
 			event,
 			"Set-Cookie",
-			`tempToken=${tempToken}; HttpOnly; Path=/; Max-Age=900;`,
+			`tempToken=${tempToken}; HttpOnly; Path=/; Max-Age=900;`
 		);
 		return {
 			statusCode: 200,
 			message: "verify TOTP to log in",
-			requiresTOTP: true,
+			requiresTOTP: true
 		};
 	} else {
 		const session = await lucia.createSession(existingUser.id, {});
 		appendHeader(
 			event,
 			"Set-Cookie",
-			lucia.createSessionCookie(session.id).serialize(),
+			lucia.createSessionCookie(session.id).serialize()
 		);
 		return {
 			statusCode: 200,
 			message: "log in successful!",
-			requiresTOTP: false,
+			requiresTOTP: false
 		};
 	}
 });

@@ -25,7 +25,7 @@ import UploadBox from "~/components/UploadBox.vue";
 //   };
 
 const response = await $fetch("/api/auth/amIauthenticated", {
-	method: "GET",
+	method: "GET"
 });
 
 if (response.fresh !== true && process.client) {

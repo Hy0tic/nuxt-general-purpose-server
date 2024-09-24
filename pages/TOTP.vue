@@ -36,7 +36,7 @@ async function verifyTOTP(e: Event) {
 	try {
 		const response = await $fetch("/api/auth/validateTOTP", {
 			method: "POST",
-			body: new FormData(e.target as HTMLFormElement),
+			body: new FormData(e.target as HTMLFormElement)
 		});
 
 		if (response && response.statusCode === 200) {

@@ -8,8 +8,8 @@ export default defineNuxtConfig({
 	postcss: {
 		plugins: {
 			tailwindcss: {},
-			autoprefixer: {},
-		},
+			autoprefixer: {}
+		}
 	},
 	modules: ["@primevue/nuxt-module"],
 	primevue: {
@@ -21,9 +21,9 @@ export default defineNuxtConfig({
 				options: {
 					prefix: "p",
 					darkModeSelector: "system",
-					cssLayer: false,
-				},
-			},
-		},
-	},
+					cssLayer: false
+				}
+			}
+		}
+	}
 });

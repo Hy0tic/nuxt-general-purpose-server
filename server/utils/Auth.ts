@@ -7,16 +7,16 @@ const adapter = new PrismaAdapter(prisma.session, prisma.user);
 export const lucia = new Lucia(adapter, {
 	sessionCookie: {
 		attributes: {
-			secure: !import.meta.dev,
-		},
+			secure: !import.meta.dev
+		}
 	},
 	getUserAttributes: (attributes: any) => {
 		return {
 			// attributes has the type of DatabaseUserAttributes
 			username: attributes.username,
-			setupTwoFactor: attributes.two_factor_secret !== null,
+			setupTwoFactor: attributes.two_factor_secret !== null
 		};
-	},
+	}
 });
 
 // IMPORTANT!

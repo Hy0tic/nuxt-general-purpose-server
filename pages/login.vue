@@ -10,7 +10,7 @@ const warning = ref<string | undefined>();
 
 onBeforeMount(async () => {
 	const response: any = await $fetch("/api/auth/amIauthenticated", {
-		method: "GET",
+		method: "GET"
 	});
 
 	if (response.fresh && process.client) {
@@ -25,7 +25,7 @@ async function login(e: Event) {
 	try {
 		const response = await $fetch("/api/auth/login", {
 			method: "POST",
-			body: new FormData(e.target as HTMLFormElement),
+			body: new FormData(e.target as HTMLFormElement)
 		});
 
 		if (response && response.statusCode === 200 && !response.requiresTOTP) {
@@ -45,7 +45,7 @@ async function login(e: Event) {
 
 async function logout() {
 	await $fetch("/api/auth/logout", {
-		method: "POST",
+		method: "POST"
 	});
 
 	router.go(0);

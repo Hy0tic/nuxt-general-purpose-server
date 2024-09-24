@@ -14,7 +14,7 @@ export default eventHandler(async (event) => {
 	) {
 		throw createError({
 			message: "Invalid username",
-			statusCode: 400,
+			statusCode: 400
 		});
 	}
 	const password = formData.get("password");
@@ -25,7 +25,7 @@ export default eventHandler(async (event) => {
 	) {
 		throw createError({
 			message: "Invalid password",
-			statusCode: 400,
+			statusCode: 400
 		});
 	}
 
@@ -34,7 +34,7 @@ export default eventHandler(async (event) => {
 		memoryCost: 19456,
 		timeCost: 2,
 		outputLen: 32,
-		parallelism: 1,
+		parallelism: 1
 	});
 	const userId = generateIdFromEntropySize(10); // 16 characters long
 
@@ -42,15 +42,15 @@ export default eventHandler(async (event) => {
 		(
 			await prisma.user.findMany({
 				where: {
-					username: username,
-				},
+					username: username
+				}
 			})
 		).length > 0;
 
 	if (usernameTaken) {
 		throw createError({
 			message: "Username Taken",
-			statusCode: 409,
+			statusCode: 409
 		});
 	}
 
@@ -59,14 +59,14 @@ export default eventHandler(async (event) => {
 			id: userId,
 			username: username,
 			password_hash: passwordHash,
-			two_factor_secret: null,
-		},
+			two_factor_secret: null
+		}
 	});
 
 	const session = await lucia.createSession(userId, {});
 	appendHeader(
 		event,
 		"Set-Cookie",
-		lucia.createSessionCookie(session.id).serialize(),
+		lucia.createSessionCookie(session.id).serialize()
 	);
 });

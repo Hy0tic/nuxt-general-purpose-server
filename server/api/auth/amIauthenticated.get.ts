@@ -7,7 +7,7 @@ export default eventHandler(async (event) => {
 	if (!cookie) {
 		return {
 			fresh: false,
-			message: "No cookie found",
+			message: "No cookie found"
 		};
 	}
 
@@ -18,20 +18,20 @@ export default eventHandler(async (event) => {
 				fresh: true,
 				message: "Cookie is fresh",
 				username: user.username,
-				statusCode: 200,
+				statusCode: 200
 			};
 		} else {
 			return {
 				fresh: false,
 				message: "Cookie is not valid",
-				statusCode: 200,
+				statusCode: 200
 			};
 		}
 	} catch (error) {
 		return {
 			fresh: false,
 			message: "Error verifying cookie",
-			statusCode: 400,
+			statusCode: 400
 		};
 	}
 });

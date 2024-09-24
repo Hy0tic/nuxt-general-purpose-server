@@ -55,7 +55,7 @@ async function uploadFile() {
 	try {
 		const response = await fetch("/api/uploadphoto", {
 			method: "POST",
-			body: formData,
+			body: formData
 		});
 
 		if (response.ok) {

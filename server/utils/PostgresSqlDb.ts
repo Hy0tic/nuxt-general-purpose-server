@@ -8,7 +8,7 @@ export const InsertPhotoIntoDb = async (
 	Title: string,
 	Description: string,
 	maxRetries: number = 3, // maximum number of retries
-	delayMs: number = 1000, // initial delay in milliseconds
+	delayMs: number = 1000 // initial delay in milliseconds
 ) => {
 	let attempts = 0;
 
@@ -19,8 +19,8 @@ export const InsertPhotoIntoDb = async (
 					FileKey: FileKey,
 					Title: Title,
 					Description: Description,
-					UploadDate: new Date(),
-				},
+					UploadDate: new Date()
+				}
 			});
 
 			break; // Exit loop on success

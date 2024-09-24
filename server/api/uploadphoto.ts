@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
 	if (!event.context.session) {
 		throw createError({
 			message: "Unauthorized",
-			statusCode: 401,
+			statusCode: 401
 		});
 	}
 
@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
 	const form = formidable({
 		multiples: false,
 		keepExtensions: true,
-		maxFileSize: 50 * 1024 * 1024 * 2, // Set max file size (e.g., 50MB)
+		maxFileSize: 50 * 1024 * 1024 * 2 // Set max file size (e.g., 50MB)
 	});
 
 	try {
@@ -67,13 +67,13 @@ export default defineEventHandler(async (event) => {
 			ContentType: mimeType,
 			Metadata: {
 				title, // Store title as metadata (if supported)
-				description, // Store description as metadata (if supported)
-			},
+				description // Store description as metadata (if supported)
+			}
 		};
 
 		// Execute the upload
 		const uploadResult = await s3Client.send(
-			new PutObjectCommand(uploadParams),
+			new PutObjectCommand(uploadParams)
 		);
 
 		InsertPhotoIntoDb(generatedFileKey, title, description);
