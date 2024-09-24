@@ -1,10 +1,10 @@
 <template>
-  <div class="flex flex-col justify-center items-center gap-10 mt-40">
-    <!-- <div class="flex flex-wrap justify-center items-center gap-5">
+	<div class="flex flex-col justify-center items-center gap-10 mt-40">
+		<!-- <div class="flex flex-wrap justify-center items-center gap-5">
         <img v-for="(image, index) in images" :key="index" :src="image" class="h-36 w-auto rounded-lg" alt="Random Photo" />
       </div> -->
-    <UploadBox />
-  </div>
+		<UploadBox />
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -25,14 +25,14 @@ import UploadBox from "~/components/UploadBox.vue";
 //   };
 
 const response = await $fetch("/api/auth/amIauthenticated", {
-  method: "GET",
+	method: "GET",
 });
 
 if (response.fresh !== true && process.client) {
-  navigateTo("/login"); // Adjust the route as necessary
+	navigateTo("/login"); // Adjust the route as necessary
 }
 
 onMounted(() => {
-  // loadImages(); // Load three random images when the component is mounted
+	// loadImages(); // Load three random images when the component is mounted
 });
 </script>

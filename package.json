@@ -1,41 +1,41 @@
 {
-  "name": "nuxt-app",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "prisma:generate": "npx prisma generate",
-    "build": "prisma generate && nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "dependencies": {
-    "@aws-sdk/client-s3": "^3.645.0",
-    "@lucia-auth/adapter-prisma": "^4.0.1",
-    "@node-rs/argon2": "^1.8.3",
-    "@primevue/themes": "^4.0.5",
-    "@prisma/client": "5.19.1",
-    "formidable": "v3",
-    "lucia": "^3.2.0",
-    "mime-types": "^2.1.35",
-    "nuxt": "^3.13.0",
-    "oslo": "^1.2.1",
-    "primevue": "^4.0.5",
-    "qrcode": "^1.5.4",
-    "uuid": "^10.0.0",
-    "vue": "latest"
-  },
-  "devDependencies": {
-    "@primevue/nuxt-module": "^4.0.5",
-    "@types/formidable": "^3.4.5",
-    "@types/mime-types": "^2.1.4",
-    "@types/qrcode": "^1.5.5",
-    "@types/uuid": "^10.0.0",
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.41",
-    "prettier": "3.3.3",
-    "prisma": "^5.19.1",
-    "tailwindcss": "^3.4.10"
-  }
+	"name": "nuxt-app",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"prisma:generate": "npx prisma generate",
+		"build": "prisma generate && nuxt build",
+		"dev": "nuxt dev",
+		"generate": "nuxt generate",
+		"preview": "nuxt preview",
+		"postinstall": "nuxt prepare"
+	},
+	"dependencies": {
+		"@aws-sdk/client-s3": "^3.645.0",
+		"@lucia-auth/adapter-prisma": "^4.0.1",
+		"@node-rs/argon2": "^1.8.3",
+		"@primevue/themes": "^4.0.5",
+		"@prisma/client": "5.19.1",
+		"formidable": "v3",
+		"lucia": "^3.2.0",
+		"mime-types": "^2.1.35",
+		"nuxt": "^3.13.0",
+		"oslo": "^1.2.1",
+		"primevue": "^4.0.5",
+		"qrcode": "^1.5.4",
+		"uuid": "^10.0.0",
+		"vue": "latest"
+	},
+	"devDependencies": {
+		"@primevue/nuxt-module": "^4.0.5",
+		"@types/formidable": "^3.4.5",
+		"@types/mime-types": "^2.1.4",
+		"@types/qrcode": "^1.5.5",
+		"@types/uuid": "^10.0.0",
+		"autoprefixer": "^10.4.20",
+		"postcss": "^8.4.41",
+		"prettier": "3.3.3",
+		"prisma": "^5.19.1",
+		"tailwindcss": "^3.4.10"
+	}
 }
