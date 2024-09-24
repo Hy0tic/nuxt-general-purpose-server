@@ -4,6 +4,7 @@
         <img v-for="(image, index) in images" :key="index" :src="image" class="h-36 w-auto rounded-lg" alt="Random Photo" />
       </div> -->
 		<UploadBox />
+    <!-- TODO: let user upload multiple photos at once -->
 	</div>
 </template>
 
