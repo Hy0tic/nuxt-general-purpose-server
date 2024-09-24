@@ -10,7 +10,9 @@ const config = {
 	semi: true,
 	singleQuote: false,
 	bracketSpacing: true,
-	bracketSameLine: false
+	bracketSameLine: false,
+	arrowParens: "always",
+	vueIndentScriptAndStyle: true
 };
 
 export default config;
