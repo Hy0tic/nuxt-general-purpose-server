@@ -1,55 +1,55 @@
 <script lang="ts" setup>
-import Button from "primevue/button";
-import InputText from "primevue/inputtext";
-import { useRouter } from "vue-router";
+	import Button from "primevue/button";
+	import InputText from "primevue/inputtext";
+	import { useRouter } from "vue-router";
 
-const router = useRouter();
-const isLoggedIn = ref<boolean>(true);
-const username = ref<string | undefined>();
-const warning = ref<string | undefined>();
+	const router = useRouter();
+	const isLoggedIn = ref<boolean>(true);
+	const username = ref<string | undefined>();
+	const warning = ref<string | undefined>();
 
-onBeforeMount(async () => {
-	const response: any = await $fetch("/api/auth/amIauthenticated", {
-		method: "GET"
-	});
-
-	if (response.fresh && process.client) {
-		isLoggedIn.value = true;
-		username.value = response.username;
-	} else if (!response.fresh && process.client) {
-		isLoggedIn.value = false;
-	}
-});
-
-async function login(e: Event) {
-	try {
-		const response = await $fetch("/api/auth/login", {
-			method: "POST",
-			body: new FormData(e.target as HTMLFormElement)
+	onBeforeMount(async () => {
+		const response: any = await $fetch("/api/auth/amIauthenticated", {
+			method: "GET"
 		});
 
-		if (response && response.statusCode === 200 && !response.requiresTOTP) {
-			// Navigate to home if login is successful
-			await router.push("/");
-		} else if (
-			response &&
-			response.statusCode === 200 &&
-			response.requiresTOTP
-		) {
-			await router.push("/TOTP");
+		if (response.fresh && process.client) {
+			isLoggedIn.value = true;
+			username.value = response.username;
+		} else if (!response.fresh && process.client) {
+			isLoggedIn.value = false;
 		}
-	} catch (e) {
-		warning.value = "Invalid username or password";
-	}
-}
-
-async function logout() {
-	await $fetch("/api/auth/logout", {
-		method: "POST"
 	});
 
-	router.go(0);
-}
+	async function login(e: Event) {
+		try {
+			const response = await $fetch("/api/auth/login", {
+				method: "POST",
+				body: new FormData(e.target as HTMLFormElement)
+			});
+
+			if (response && response.statusCode === 200 && !response.requiresTOTP) {
+				// Navigate to home if login is successful
+				await router.push("/");
+			} else if (
+				response &&
+				response.statusCode === 200 &&
+				response.requiresTOTP
+			) {
+				await router.push("/TOTP");
+			}
+		} catch (e) {
+			warning.value = "Invalid username or password";
+		}
+	}
+
+	async function logout() {
+		await $fetch("/api/auth/logout", {
+			method: "POST"
+		});
+
+		router.go(0);
+	}
 </script>
 
 <template>

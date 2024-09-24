@@ -11,13 +11,13 @@
 </template>
 
 <script setup lang="ts">
-// Type-safe props definition
-interface Props {
-	name: string;
-	path: string;
-	//   description: string;
-	//   link: string;
-}
+	// Type-safe props definition
+	interface Props {
+		name: string;
+		path: string;
+		//   description: string;
+		//   link: string;
+	}
 
-const props = defineProps<Props>();
+	const props = defineProps<Props>();
 </script>

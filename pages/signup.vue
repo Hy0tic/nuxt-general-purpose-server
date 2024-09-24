@@ -1,15 +1,15 @@
 <!--pages/signup.vue-->
 <script lang="ts" setup>
-import Button from "primevue/button";
-import InputText from "primevue/inputtext";
+	import Button from "primevue/button";
+	import InputText from "primevue/inputtext";
 
-async function signup(e: Event) {
-	await $fetch("/api/auth/signup", {
-		method: "POST",
-		body: new FormData(e.target as HTMLFormElement)
-	});
-	await navigateTo("/");
-}
+	async function signup(e: Event) {
+		await $fetch("/api/auth/signup", {
+			method: "POST",
+			body: new FormData(e.target as HTMLFormElement)
+		});
+		await navigateTo("/");
+	}
 </script>
 
 <template>

@@ -26,28 +26,28 @@
 </template>
 
 <script setup lang="ts">
-import InputText from "primevue/inputtext";
+	import InputText from "primevue/inputtext";
 
-const router = useRouter();
+	const router = useRouter();
 
-const warning = ref<string | undefined>();
+	const warning = ref<string | undefined>();
 
-async function verifyTOTP(e: Event) {
-	try {
-		const response = await $fetch("/api/auth/validateTOTP", {
-			method: "POST",
-			body: new FormData(e.target as HTMLFormElement)
-		});
+	async function verifyTOTP(e: Event) {
+		try {
+			const response = await $fetch("/api/auth/validateTOTP", {
+				method: "POST",
+				body: new FormData(e.target as HTMLFormElement)
+			});
 
-		if (response && response.statusCode === 200) {
-			await router.push("/");
-		}
+			if (response && response.statusCode === 200) {
+				await router.push("/");
+			}
 
-		if (response.statusCode === 400) {
+			if (response.statusCode === 400) {
+				warning.value = "Invalid Code, try again.";
+			}
+		} catch (e) {
 			warning.value = "Invalid Code, try again.";
 		}
-	} catch (e) {
-		warning.value = "Invalid Code, try again.";
 	}
-}
 </script>

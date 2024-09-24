@@ -28,43 +28,43 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import Button from "primevue/button";
-import InputGroup from "primevue/inputgroup";
-import InputText from "primevue/inputtext";
+	import { ref } from "vue";
+	import Button from "primevue/button";
+	import InputGroup from "primevue/inputgroup";
+	import InputText from "primevue/inputtext";
 
-// Reactive references for file, title, and description
-const selectedFile = ref(null);
-const title = ref("");
-const description = ref("");
+	// Reactive references for file, title, and description
+	const selectedFile = ref(null);
+	const title = ref("");
+	const description = ref("");
 
-// Handles file change event
-function handleFileChange(event) {
-	selectedFile.value = event.target.files[0];
-}
-
-// Handles the form submission to upload the file and additional data
-async function uploadFile() {
-	if (!selectedFile.value) return;
-
-	const formData = new FormData();
-	formData.append("file", selectedFile.value);
-	formData.append("title", title.value); // Append the title
-	formData.append("description", description.value); // Append the description
-
-	try {
-		const response = await fetch("/api/uploadphoto", {
-			method: "POST",
-			body: formData
-		});
-
-		if (response.ok) {
-			alert("Upload successful!");
-		} else {
-			alert("Upload failed.");
-		}
-	} catch (error) {
-		console.error("Error uploading file:", error);
+	// Handles file change event
+	function handleFileChange(event) {
+		selectedFile.value = event.target.files[0];
 	}
-}
+
+	// Handles the form submission to upload the file and additional data
+	async function uploadFile() {
+		if (!selectedFile.value) return;
+
+		const formData = new FormData();
+		formData.append("file", selectedFile.value);
+		formData.append("title", title.value); // Append the title
+		formData.append("description", description.value); // Append the description
+
+		try {
+			const response = await fetch("/api/uploadphoto", {
+				method: "POST",
+				body: formData
+			});
+
+			if (response.ok) {
+				alert("Upload successful!");
+			} else {
+				alert("Upload failed.");
+			}
+		} catch (error) {
+			console.error("Error uploading file:", error);
+		}
+	}
 </script>

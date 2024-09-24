@@ -9,32 +9,32 @@
 </template>
 
 <script>
-export default {
-	name: "NavBar"
-};
+	export default {
+		name: "NavBar"
+	};
 </script>
 
 <style scoped>
-.navbar {
-	display: flex;
-	justify-content: space-around;
-	padding: 1rem;
-	background-color: #333;
-	color: red;
-}
+	.navbar {
+		display: flex;
+		justify-content: space-around;
+		padding: 1rem;
+		background-color: #333;
+		color: red;
+	}
 
-.navbar ul {
-	list-style: none;
-	display: flex;
-	gap: 1rem;
-}
+	.navbar ul {
+		list-style: none;
+		display: flex;
+		gap: 1rem;
+	}
 
-.navbar li {
-	cursor: pointer;
-}
+	.navbar li {
+		cursor: pointer;
+	}
 
-.navbar a {
-	text-decoration: none;
-	color: white;
-}
+	.navbar a {
+		text-decoration: none;
+		color: white;
+	}
 </style>
