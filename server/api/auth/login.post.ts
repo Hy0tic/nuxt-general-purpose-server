@@ -11,14 +11,14 @@ export default eventHandler(async (event) => {
 		!/^[a-z0-9_-]+$/.test(username)
 	) {
 		throw createError({
-			message: "Invalid username",
+			message: "Incorrect username or password",
 			statusCode: 400
 		});
 	}
 	const password = formData.get("password");
 	if (typeof password !== "string" || password.length < 6 || password.length > 255) {
 		throw createError({
-			message: "Invalid password",
+			message: "Incorrect username or password",
 			statusCode: 400
 		});
 	}
