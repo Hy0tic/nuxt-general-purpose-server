@@ -24,7 +24,7 @@
                 name="TOTP"
                 class="m-5"
             />
-            <!-- <InputOtp v-model="value" integerOnly/> -->
+
             <Button type="submit" class="mb-5">
                 Send Code
             </Button>
