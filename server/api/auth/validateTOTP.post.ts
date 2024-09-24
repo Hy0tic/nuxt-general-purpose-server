@@ -73,7 +73,8 @@ export default eventHandler(async (event) => {
     }
     else {
         return {
-            statusCode: 400
+            statusCode: 400,
+            message: "invalid"
         }
     }
 

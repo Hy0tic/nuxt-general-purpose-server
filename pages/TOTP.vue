@@ -16,12 +16,18 @@
                 Enter the code from Google Authenticator app
             </p>
 
+            <div class="text-red-700">
+                {{ warning }}
+            </div>
+
             <InputText
                 name="TOTP"
                 class="m-5"
             />
             <!-- <InputOtp v-model="value" integerOnly/> -->
-
+            <Button type="submit" class="mb-5">
+                Send Code
+            </Button>
         </form>
     </div>
 </template>
@@ -31,15 +37,29 @@ import InputText from 'primevue/inputtext';
 
 const router = useRouter();
 
+const warning = ref<string | undefined>()
+
 async function verifyTOTP(e: Event) {
-    const response = await $fetch("/api/auth/validateTOTP", {
-      method: "POST",
-      body: new FormData(e.target as HTMLFormElement)
-    });
+    
+    try{
+        const response = await $fetch("/api/auth/validateTOTP", {
+          method: "POST",
+          body: new FormData(e.target as HTMLFormElement)
+        });
 
+        if(response && response.statusCode === 200){
+            await router.push("/");
+        }
 
-    if(response && response.statusCode === 200){
-        await router.push("/");
+        if(response.statusCode === 400)
+        {
+            warning.value =  "Invalid Code, try again.";
+        }
     }
+    catch (e) {
+        warning.value = "Invalid Code, try again.";
+    }
+
+
 }
 </script>
