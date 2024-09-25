@@ -18,9 +18,7 @@
 			</div>
 
 			<Button v-if="!isLoggedIn">
-				<NuxtLink to="/login"> 
-					Login 
-				</NuxtLink>
+				<NuxtLink to="/login"> Login </NuxtLink>
 			</Button>
 
 			<Button v-if="isLoggedIn" @click="logout"> Logout </Button>
