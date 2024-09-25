@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="m-2 flex h-40 w-96 items-center justify-center rounded-md bg-green-900"
+		class="m-10 flex h-40 w-96 items-center justify-center rounded-md bg-green-900"
 	>
 		<a :href="path">
 			<div class="text-xl font-bold text-white">

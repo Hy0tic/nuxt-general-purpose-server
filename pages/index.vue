@@ -1,5 +1,8 @@
 <template>
-	<ProjectDisplayBox name="Mello Photo Storage" path="/melloPhotoStorage" />
+	<ProjectDisplayBox 
+		name="Photo Storage 📷" 
+		path="/melloPhotoStorage"
+	/>
 </template>
 
 <script setup lang="ts">

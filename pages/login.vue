@@ -4,7 +4,7 @@
 	import { useRouter } from "vue-router";
 
 	const router = useRouter();
-	const isLoggedIn = ref<boolean>(true);
+	const isLoggedIn = ref<boolean>();
 	const username = ref<string | undefined>();
 	const warning = ref<string | undefined>();
 
