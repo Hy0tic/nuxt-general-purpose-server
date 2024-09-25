@@ -2,10 +2,10 @@
 	<nav
 		class="navbar flex justify-around bg-[#333] p-[1rem] text-[rgb(255,255,255)]"
 	>
-		<ul class="">
-			<li><NuxtLink to="/">Home</NuxtLink></li>
-			<li><NuxtLink to="/about">About</NuxtLink></li>
-			<li><NuxtLink to="/contact">Contact</NuxtLink></li>
+		<ul class="list-none flex gap-[1rem]">
+			<li class="cursor-pointer"><NuxtLink to="/">Home</NuxtLink></li>
+			<li class="cursor-pointer"><NuxtLink to="/about">About</NuxtLink></li>
+			<li class="cursor-pointer"><NuxtLink to="/contact">Contact</NuxtLink></li>
 		</ul>
 	</nav>
 </template>
@@ -15,20 +15,3 @@
 		name: "NavBar"
 	};
 </script>
-
-<style scoped>
-	.navbar ul {
-		list-style: none;
-		display: flex;
-		gap: 1rem;
-	}
-
-	.navbar li {
-		cursor: pointer;
-	}
-
-	.navbar a {
-		text-decoration: none;
-		color: white;
-	}
-</style>
