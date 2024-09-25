@@ -1,6 +1,8 @@
 <template>
 	<div class="flex items-center justify-center">
-		<div class="mt-48 flex h-96 w-[28rem] flex-col items-center justify-center rounded-lg bg-[rgb(24,24,27)]">
+		<div
+			class="mt-48 flex h-96 w-[28rem] flex-col items-center justify-center rounded-lg bg-[rgb(24,24,27)]"
+		>
 			<div class="text-center">
 				Install Authenticator app and scan QR code below
 			</div>

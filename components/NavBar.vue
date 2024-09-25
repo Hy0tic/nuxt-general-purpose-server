@@ -10,17 +10,20 @@
 
 		<div class="flex flex-row gap-5">
 			<div v-if="username" class="mt-2">Welcome back, {{ username }}</div>
-			
+
 			<div v-if="!twoFaEnabled" class="mt-2">
 				<NuxtLink to="/generateQRcode">
 					Enable Two Factor Authentication
 				</NuxtLink>
 			</div>
 
-			<Button v-if="!isLoggedIn"><NuxtLink to="/login"> Login </NuxtLink></Button>
+			<Button v-if="!isLoggedIn">
+				<NuxtLink to="/login"> 
+					Login 
+				</NuxtLink>
+			</Button>
 
 			<Button v-if="isLoggedIn" @click="logout"> Logout </Button>
-
 		</div>
 	</nav>
 </template>
