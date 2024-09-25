@@ -6,20 +6,14 @@
 			<li class="cursor-pointer"><NuxtLink to="/">Home</NuxtLink></li>
 		</ul>
 
-		<div class="flex flex-row gap-5"> 
-			<div v-if="username">
-				Welcome back, {{ username }}
-			</div>
+		<div class="flex flex-row gap-5">
+			<div v-if="username">Welcome back, {{ username }}</div>
 
 			<Button v-if="!isLoggedIn">
-				<NuxtLink to="/login">
-					Login
-				</NuxtLink>
+				<NuxtLink to="/login"> Login </NuxtLink>
 			</Button>
-	
-			<Button v-if="isLoggedIn" @click="logout">
-				Logout
-			</Button>
+
+			<Button v-if="isLoggedIn" @click="logout"> Logout </Button>
 		</div>
 	</nav>
 </template>
@@ -31,7 +25,6 @@
 </script>
 
 <script setup lang="ts">
-
 	const isLoggedIn = ref<boolean>();
 	const username = ref<string | undefined>();
 	const router = useRouter();
@@ -45,16 +38,15 @@
 	}
 
 	onBeforeMount(async () => {
-			const response: any = await $fetch("/api/auth/amIauthenticated", {
-				method: "GET"
-			});
-
-			if (response.fresh && process.client) {
-				isLoggedIn.value = true;
-				username.value = response.username;
-			} else if (!response.fresh && process.client) {
-				isLoggedIn.value = false;
-			}
+		const response: any = await $fetch("/api/auth/amIauthenticated", {
+			method: "GET"
 		});
 
+		if (response.fresh && process.client) {
+			isLoggedIn.value = true;
+			username.value = response.username;
+		} else if (!response.fresh && process.client) {
+			isLoggedIn.value = false;
+		}
+	});
 </script>
