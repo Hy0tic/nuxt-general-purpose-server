@@ -3,19 +3,17 @@
 		class="navbar flex justify-between bg-[#333] p-[1rem] text-[rgb(255,255,255)]"
 	>
 		<ul class="flex list-none gap-[1rem]">
-			<li class="cursor-pointer font-bold mt-2">
-				<NuxtLink to="/">
-					Home
-				</NuxtLink>
+			<li class="mt-2 cursor-pointer font-bold">
+				<NuxtLink to="/"> Home </NuxtLink>
 			</li>
 		</ul>
 
 		<div class="flex flex-row gap-5">
-			<div v-if="username" class="mt-2">
-				Welcome back, {{ username }}
-			</div>
+			<div v-if="username" class="mt-2">Welcome back, {{ username }}</div>
 
-			<Button v-if="!isLoggedIn"><NuxtLink to="/login"> Login </NuxtLink></Button>
+			<Button v-if="!isLoggedIn"
+				><NuxtLink to="/login"> Login </NuxtLink></Button
+			>
 
 			<Button v-if="isLoggedIn" @click="logout"> Logout </Button>
 		</div>
