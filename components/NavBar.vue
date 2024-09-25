@@ -9,15 +9,17 @@
 		</ul>
 
 		<div class="flex flex-row gap-5">
-			<div v-if="username" class="mt-2">Welcome back, {{ username }}</div>
+			<div v-if="!isLoading && username" class="mt-2">
+				Welcome back, {{ username }}
+			</div>
 
-			<div v-if="!twoFaEnabled" class="mt-2">
+			<div v-if="!isLoading && !twoFaEnabled" class="mt-2">
 				<NuxtLink to="/generateQRcode">
 					Enable Two Factor Authentication
 				</NuxtLink>
 			</div>
 
-			<Button v-if="!isLoggedIn">
+			<Button v-if="!isLoading && !isLoggedIn">
 				<NuxtLink to="/login"> Login </NuxtLink>
 			</Button>
 
@@ -37,6 +39,7 @@
 	const username = ref<string | undefined>();
 	const twoFaEnabled = ref<boolean>();
 	const router = useRouter();
+	const isLoading = ref<boolean>(true);
 
 	async function logout() {
 		await $fetch("/api/auth/logout", {
@@ -58,5 +61,7 @@
 		} else if (!response.fresh && process.client) {
 			isLoggedIn.value = false;
 		}
+
+		isLoading.value = false;
 	});
 </script>
