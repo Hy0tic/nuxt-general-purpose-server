@@ -18,6 +18,7 @@ export default eventHandler(async (event) => {
 				fresh: true,
 				message: "Cookie is fresh",
 				username: user.username,
+				twoFA: user.setupTwoFactor,
 				statusCode: 200
 			};
 		} else {
