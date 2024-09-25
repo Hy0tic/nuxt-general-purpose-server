@@ -1,9 +1,9 @@
 <template>
 	<div
-		class="flex justify-center items-center bg-green-900 w-96 h-40 rounded-md m-2"
+		class="m-2 flex h-40 w-96 items-center justify-center rounded-md bg-green-900"
 	>
 		<a :href="path">
-			<div class="text-white font-bold text-xl">
+			<div class="text-xl font-bold text-white">
 				{{ name }}
 			</div>
 		</a>

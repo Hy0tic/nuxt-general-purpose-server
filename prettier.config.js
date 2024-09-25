@@ -12,7 +12,8 @@ const config = {
 	bracketSpacing: true,
 	bracketSameLine: false,
 	arrowParens: "always",
-	vueIndentScriptAndStyle: true
+	vueIndentScriptAndStyle: true,
+	plugins: ["prettier-plugin-tailwindcss"]
 };
 
 export default config;

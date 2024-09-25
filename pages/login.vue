@@ -53,12 +53,12 @@
 </script>
 
 <template>
-	<div class="flex justify-center items-center">
+	<div class="flex items-center justify-center">
 		<div
-			class="rounded-lg w-80 h-auto bg-[rgb(24,24,27)] flex flex-col justify-center items-center mt-48"
+			class="mt-48 flex h-auto w-80 flex-col items-center justify-center rounded-lg bg-[rgb(24,24,27)]"
 			v-if="!isLoggedIn"
 		>
-			<h1 class="text-2xl font-semibold m-4">Sign in</h1>
+			<h1 class="m-4 text-2xl font-semibold">Sign in</h1>
 
 			<div class="text-red-700">
 				{{ warning }}
@@ -82,7 +82,7 @@
 
 		<div
 			v-if="isLoggedIn"
-			class="rounded-lg w-80 h-80 bg-[rgb(24,24,27)] flex flex-col justify-center items-center mt-48 gap-6"
+			class="mt-48 flex h-80 w-80 flex-col items-center justify-center gap-6 rounded-lg bg-[rgb(24,24,27)]"
 		>
 			<div>Logged in as {{ username }}</div>
 			<Button type="button" @click="logout" class="m-5"> Sign out </Button>

@@ -13,9 +13,9 @@
 </script>
 
 <template>
-	<div class="flex justify-center items-center">
+	<div class="flex items-center justify-center">
 		<div
-			class="rounded-lg w-80 h-80 bg-[rgb(24,24,27)] flex flex-col justify-center items-center mt-48"
+			class="mt-48 flex h-80 w-80 flex-col items-center justify-center rounded-lg bg-[rgb(24,24,27)]"
 		>
 			<h1 class="text-2xl font-semibold">Create Account</h1>
 

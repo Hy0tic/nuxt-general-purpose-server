@@ -1,7 +1,7 @@
 <template>
 	<form
 		@submit.prevent="uploadFile"
-		class="rounded-lg w-80 h-96 bg-[rgb(24,24,27)]"
+		class="h-96 w-80 rounded-lg bg-[rgb(24,24,27)]"
 	>
 		<input
 			class="m-10"
@@ -10,7 +10,7 @@
 			@change="handleFileChange"
 		/>
 
-		<div class="flex flex-col gap-10 m-5">
+		<div class="m-5 flex flex-col gap-10">
 			<InputGroup>
 				<InputText v-model="title" placeholder="Enter title" />
 			</InputGroup>

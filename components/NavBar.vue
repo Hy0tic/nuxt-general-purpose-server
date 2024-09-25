@@ -1,6 +1,8 @@
 <template>
-	<nav class="navbar">
-		<ul>
+	<nav
+		class="navbar flex justify-around bg-[#333] p-[1rem] text-[rgb(255,255,255)]"
+	>
+		<ul class="">
 			<li><NuxtLink to="/">Home</NuxtLink></li>
 			<li><NuxtLink to="/about">About</NuxtLink></li>
 			<li><NuxtLink to="/contact">Contact</NuxtLink></li>
@@ -15,14 +17,6 @@
 </script>
 
 <style scoped>
-	.navbar {
-		display: flex;
-		justify-content: space-around;
-		padding: 1rem;
-		background-color: #333;
-		color: red;
-	}
-
 	.navbar ul {
 		list-style: none;
 		display: flex;

@@ -1,10 +1,10 @@
 <template>
-	<div class="flex flex-col justify-center items-center gap-10 mt-40">
+	<div class="mt-40 flex flex-col items-center justify-center gap-10">
 		<!-- <div class="flex flex-wrap justify-center items-center gap-5">
         <img v-for="(image, index) in images" :key="index" :src="image" class="h-36 w-auto rounded-lg" alt="Random Photo" />
       </div> -->
 		<UploadBox />
-    <!-- TODO: let user upload multiple photos at once -->
+		<!-- TODO: let user upload multiple photos at once -->
 	</div>
 </template>
 

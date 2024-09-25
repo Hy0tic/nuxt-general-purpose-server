@@ -1,12 +1,12 @@
 <template>
-	<div class="flex justify-center items-center">
+	<div class="flex items-center justify-center">
 		<!-- do I need action? -->
 		<form
 			type="submit"
 			method="post"
 			action="/api/auth/validateTOTP"
 			@submit.prevent="verifyTOTP"
-			class="rounded-lg w-[25rem] h-auto bg-[rgb(24,24,27)] flex flex-col justify-center items-center mt-48"
+			class="mt-48 flex h-auto w-[25rem] flex-col items-center justify-center rounded-lg bg-[rgb(24,24,27)]"
 		>
 			<h1 class="my-5 mb-2 mt-5 font-bold">OTP Verification</h1>
 

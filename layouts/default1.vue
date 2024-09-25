@@ -1,20 +1,13 @@
 <template>
 	<div>
 		<NavBar />
-		<Nuxt />
+		<slot />
+		<!-- <Nuxt /> -->
 		<!-- This renders the page content -->
 	</div>
 </template>
 
-<script>
-	import NavBar from "/components/NavBar.vue";
-
-	export default {
-		components: {
-			NavBar
-		}
-	};
-</script>
+<script setup lang="ts"></script>
 
 <style scoped>
 	/* Optional: Add any layout-specific styles here */
