@@ -23,9 +23,7 @@
 				<NuxtLink to="/login"> Login </NuxtLink>
 			</Button>
 
-			<Button v-if="isLoggedIn && !isLoading" @click="logout">
-				Logout 
-			</Button>
+			<Button v-if="isLoggedIn && !isLoading" @click="logout"> Logout </Button>
 		</div>
 	</nav>
 </template>
@@ -54,23 +52,22 @@
 	onBeforeMount(async () => {
 		// TODO: error handling
 		await useFetch("/api/auth/amIauthenticated", {
-			onRequest({ options }){
+			onRequest({ options }) {
 				options.method = "GET";
 			},
 			onResponse({ response }) {
 				// Process the response data
-				if(response._data.fresh && import.meta.client){
+				if (response._data.fresh && import.meta.client) {
 					isLoggedIn.value = true;
 					username.value = response._data.username;
 					twoFaEnabled.value = response._data.twoFA;
-				}
-				else {
+				} else {
 					isLoggedIn.value = false;
 				}
 			},
-			onRequestError({}){},
-			onResponseError({}){}
-		})
+			onRequestError({}) {},
+			onResponseError({}) {}
+		});
 
 		isLoading.value = false;
 	});
