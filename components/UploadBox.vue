@@ -237,6 +237,7 @@
 		}
 	}
 
+	// TODO: add error handling, handle partial success, track progress for the correct photo uploaded
 	// multi upload
 	const onRemoveTemplatingFile = (file, removeFileCallback, index) => {
 		removeFileCallback(index);
