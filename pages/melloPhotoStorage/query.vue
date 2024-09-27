@@ -22,7 +22,7 @@
 			navigateTo("/login"); // Adjust the route as necessary
 		}
 
-        // // TODO: error handling
+		// // TODO: error handling
 		// await useFetch("/api/", {
 		// 	onRequest({ options }) {
 		// 		options.method = "GET";
