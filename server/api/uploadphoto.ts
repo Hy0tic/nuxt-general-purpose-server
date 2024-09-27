@@ -1,4 +1,4 @@
-// File: server/api/upload.ts
+// File: server/api/uploadphoto.ts
 import { defineEventHandler } from "h3";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
 import formidable from "formidable";
