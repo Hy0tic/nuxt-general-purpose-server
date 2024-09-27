@@ -1,28 +1,34 @@
 <template>
-    <Image v-for="(image, index) in images" :key="index" :src="image" class="h-36 w-auto rounded-lg" alt="image" />
+	<Image
+		v-for="(image, index) in images"
+		:key="index"
+		:src="image"
+		class="h-36 w-auto rounded-lg"
+		alt="image"
+	/>
 </template>
 
 <script setup lang="ts">
-import Image from 'primevue/image';
+	import Image from "primevue/image";
 
-const images = ref([]);
+	const images = ref([]);
 
-onBeforeMount(async () => {
-    const response = await $fetch("/api/auth/amIauthenticated", {
-		method: "GET"
-	});
+	onBeforeMount(async () => {
+		const response = await $fetch("/api/auth/amIauthenticated", {
+			method: "GET"
+		});
 
-	if (response.fresh !== true && process.client) {
-		navigateTo("/login"); // Adjust the route as necessary
-	}
+		if (response.fresh !== true && process.client) {
+			navigateTo("/login"); // Adjust the route as necessary
+		}
 
-    await useFetch("/api/", {
-        onRequest({ options }) {
+		await useFetch("/api/", {
+			onRequest({ options }) {
 				options.method = "GET";
 			},
-        onResponse({}) {},
-        onRequestError({}) {},
-        onResponseError({}) {}
-    });
-})
+			onResponse({}) {},
+			onRequestError({}) {},
+			onResponseError({}) {}
+		});
+	});
 </script>
