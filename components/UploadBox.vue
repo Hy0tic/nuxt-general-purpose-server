@@ -288,7 +288,6 @@
 		// } catch (error) {
 		// 	console.error("Error uploading file:", error);
 		// }
-
 	};
 
 	const formatSize = (bytes) => {

@@ -35,57 +35,55 @@ export default defineEventHandler(async (event) => {
 			});
 		});
 
-        console.log("FILES: ", files.files?.length)
+		console.log("FILES: ", files.files?.length);
 		// Extract the uploaded file
 		const file = files.files;
 		if (!files.files) {
 			throw new Error("File not found in the uploaded data.");
 		}
-        
-        file?.forEach(async (f) => {
-            // Extract title and description from fields
-            const title = `Untitled #${generateRandomId()}`;
-            const description = "";
 
-            // Check if filepath exists and is a string
-            const filepath = f.filepath;
-            if (typeof filepath !== "string" || !fs.existsSync(filepath)) {
-                throw new Error(`File path is invalid or does not exist: ${filepath}`);
-            }
-            
-            // Stream the file directly to the R2 bucket
-            const fileStream = fs.createReadStream(filepath); // Read from the validated filepath
-            const mimeType = mime.contentType(path.extname(filepath)) || "application/octet-stream";
-            
-            const generatedFileKey = uuidv4();
+		file?.forEach(async (f) => {
+			// Extract title and description from fields
+			const title = `Untitled #${generateRandomId()}`;
+			const description = "";
 
-            // Upload the file to R2
-            const uploadParams = {
-                Bucket: process.env.CLOUDFLARE_R2_BUCKET || "",
-                Key: generatedFileKey, // Provide a default fallback key name
-                Body: fileStream,
-                ContentType: mimeType,
-                Metadata: {
-                    title, // Store title as metadata (if supported)
-                    description // Store description as metadata (if supported)
-                }
-            };
-            
-            // Execute the upload 
-            // const uploadResult = 
-            await s3Client.send(
-                new PutObjectCommand(uploadParams)
-            );
+			// Check if filepath exists and is a string
+			const filepath = f.filepath;
+			if (typeof filepath !== "string" || !fs.existsSync(filepath)) {
+				throw new Error(`File path is invalid or does not exist: ${filepath}`);
+			}
 
-            InsertPhotoIntoDb(generatedFileKey, title, description);
-        })
+			// Stream the file directly to the R2 bucket
+			const fileStream = fs.createReadStream(filepath); // Read from the validated filepath
+			const mimeType =
+				mime.contentType(path.extname(filepath)) || "application/octet-stream";
 
-		return { 
-            statusCode: 200,
-            message: "Upload successful"
-            // data: uploadResult 
-        };
+			const generatedFileKey = uuidv4();
 
+			// Upload the file to R2
+			const uploadParams = {
+				Bucket: process.env.CLOUDFLARE_R2_BUCKET || "",
+				Key: generatedFileKey, // Provide a default fallback key name
+				Body: fileStream,
+				ContentType: mimeType,
+				Metadata: {
+					title, // Store title as metadata (if supported)
+					description // Store description as metadata (if supported)
+				}
+			};
+
+			// Execute the upload
+			// const uploadResult =
+			await s3Client.send(new PutObjectCommand(uploadParams));
+
+			InsertPhotoIntoDb(generatedFileKey, title, description);
+		});
+
+		return {
+			statusCode: 200,
+			message: "Upload successful"
+			// data: uploadResult
+		};
 	} catch (error: any) {
 		console.error("Error uploading to R2:", error);
 		throw new Error(`Upload failed: ${error.message}`);
@@ -93,5 +91,5 @@ export default defineEventHandler(async (event) => {
 });
 
 function generateRandomId() {
-    return Math.floor(Math.random() * 1e9);  // Generates a random number up to 9 digits
-  }
+	return Math.floor(Math.random() * 1e9); // Generates a random number up to 9 digits
+}
