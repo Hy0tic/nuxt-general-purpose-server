@@ -42,6 +42,7 @@
 		}
 	]);
 
+	// TODO: handle error
 	onBeforeMount(async () => {
 		const response = await $fetch("/api/auth/amIauthenticated", {
 			method: "GET"
