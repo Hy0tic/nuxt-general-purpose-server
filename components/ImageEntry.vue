@@ -1,14 +1,20 @@
 <template>
-	<div class="container rounded-md bg-[rgb(30,30,30)]">
-		<div class="title">
+	<div class="flex flex-col container rounded-md bg-[rgb(30,30,30)] h-48 w-56 m-5">
+		<Image 
+			:src="url" 
+			class="rounded-lg" 
+			alt="image" 
+		/>
+
+		<div class="title text-center">
 			{{ title }}
 		</div>
-
-		<img :src="url" alt="photo" />
 	</div>
 </template>
 
 <script setup lang="ts">
+	import Image from "primevue/image";
+
 	interface Props {
 		title: string;
 		description: string;

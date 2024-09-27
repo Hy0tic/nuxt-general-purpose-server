@@ -5,4 +5,6 @@ export default defineEventHandler(async (event) => {
 			statusCode: 401
 		});
 	}
+
+	// get page number as parameter
 });
