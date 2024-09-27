@@ -47,18 +47,18 @@
 			method: "GET"
 		});
 
-		if (response.fresh !== true && process.client) {
+		if (response.fresh !== true && import.meta.client) {
 			navigateTo("/login"); // Adjust the route as necessary
 		}
 
-		// // TODO: error handling
-		// await useFetch("/api/", {
-		// 	onRequest({ options }) {
-		// 		options.method = "GET";
-		// 	},
-		// 	onResponse({}) {},
-		// 	onRequestError({}) {},
-		// 	onResponseError({}) {}
-		// });
+		// TODO: error handling
+		await $fetch("/api/queryPhoto", {
+			method: "GET",
+			params: {
+				pageNumber: 0
+			}
+		}).then((data) => {
+			images.value = data.imageArray;
+		});
 	});
 </script>

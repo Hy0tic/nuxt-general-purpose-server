@@ -1,8 +1,8 @@
 <template>
 	<div
-		class="container m-5 flex h-48 w-56 flex-col rounded-md bg-[rgb(30,30,30)]"
+		class="container m-5 flex h-96 max-h-96 flex-col rounded-md bg-[rgb(41,40,40)]"
 	>
-		<Image :src="url" class="rounded-lg" alt="image" />
+		<Image :src="url" class="rounded-lg" alt="image" width="255px" />
 
 		<div class="title text-center">
 			{{ title }}
