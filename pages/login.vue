@@ -13,10 +13,10 @@
 			method: "GET"
 		});
 
-		if (response.fresh && process.client) {
+		if (response.fresh && import.meta.client) {
 			isLoggedIn.value = true;
 			username.value = response.username;
-		} else if (!response.fresh && process.client) {
+		} else if (!response.fresh && import.meta.client) {
 			isLoggedIn.value = false;
 		}
 	});
