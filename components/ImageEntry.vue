@@ -1,10 +1,8 @@
 <template>
-	<div class="flex flex-col container rounded-md bg-[rgb(30,30,30)] h-48 w-56 m-5">
-		<Image 
-			:src="url" 
-			class="rounded-lg" 
-			alt="image" 
-		/>
+	<div
+		class="container m-5 flex h-48 w-56 flex-col rounded-md bg-[rgb(30,30,30)]"
+	>
+		<Image :src="url" class="rounded-lg" alt="image" />
 
 		<div class="title text-center">
 			{{ title }}

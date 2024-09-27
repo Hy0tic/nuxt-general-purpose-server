@@ -1,5 +1,5 @@
 <template>
-	<div class="flex flex-row"> 
+	<div class="flex flex-row">
 		<ImageEntry
 			v-for="(image, index) in images"
 			:key="index"
@@ -17,25 +17,30 @@
 		title: string;
 		description: string;
 		url: string;
-	}
+	};
 
-	const images = ref<ImageInfo[]>([{
-		title: "test image",
-		description: "japan or smthn",
-		url: "https://www.thesprucepets.com/thmb/b_dt6JpFxaD6ROMYy7nVmwuFars=/3504x0/filters:no_upscale():strip_icc()/Pomeranian-GettyImages-1014940472-a6ba0030958a4bbba0eee3e982ee9bc6.jpg"
-	},{
-		title: "sketch",
-		description: "japan or smthn",
-		url: "https://www.thesprucepets.com/thmb/b_dt6JpFxaD6ROMYy7nVmwuFars=/3504x0/filters:no_upscale():strip_icc()/Pomeranian-GettyImages-1014940472-a6ba0030958a4bbba0eee3e982ee9bc6.jpg"
-	},{
-		title: "test image",
-		description: "japan or smthn",
-		url: "https://www.thesprucepets.com/thmb/b_dt6JpFxaD6ROMYy7nVmwuFars=/3504x0/filters:no_upscale():strip_icc()/Pomeranian-GettyImages-1014940472-a6ba0030958a4bbba0eee3e982ee9bc6.jpg"
-	},{
-		title: "test image",
-		description: "japan or smthn",
-		url: "https://www.thesprucepets.com/thmb/b_dt6JpFxaD6ROMYy7nVmwuFars=/3504x0/filters:no_upscale():strip_icc()/Pomeranian-GettyImages-1014940472-a6ba0030958a4bbba0eee3e982ee9bc6.jpg"
-	}]);
+	const images = ref<ImageInfo[]>([
+		{
+			title: "test image",
+			description: "japan or smthn",
+			url: "https://www.thesprucepets.com/thmb/b_dt6JpFxaD6ROMYy7nVmwuFars=/3504x0/filters:no_upscale():strip_icc()/Pomeranian-GettyImages-1014940472-a6ba0030958a4bbba0eee3e982ee9bc6.jpg"
+		},
+		{
+			title: "sketch",
+			description: "japan or smthn",
+			url: "https://www.thesprucepets.com/thmb/b_dt6JpFxaD6ROMYy7nVmwuFars=/3504x0/filters:no_upscale():strip_icc()/Pomeranian-GettyImages-1014940472-a6ba0030958a4bbba0eee3e982ee9bc6.jpg"
+		},
+		{
+			title: "test image",
+			description: "japan or smthn",
+			url: "https://www.thesprucepets.com/thmb/b_dt6JpFxaD6ROMYy7nVmwuFars=/3504x0/filters:no_upscale():strip_icc()/Pomeranian-GettyImages-1014940472-a6ba0030958a4bbba0eee3e982ee9bc6.jpg"
+		},
+		{
+			title: "test image",
+			description: "japan or smthn",
+			url: "https://www.thesprucepets.com/thmb/b_dt6JpFxaD6ROMYy7nVmwuFars=/3504x0/filters:no_upscale():strip_icc()/Pomeranian-GettyImages-1014940472-a6ba0030958a4bbba0eee3e982ee9bc6.jpg"
+		}
+	]);
 
 	onBeforeMount(async () => {
 		const response = await $fetch("/api/auth/amIauthenticated", {
