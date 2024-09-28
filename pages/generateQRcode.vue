@@ -26,4 +26,8 @@
 			console.error("Error fetching QR code:", error);
 		}
 	});
+
+	definePageMeta({
+		layout: "default1"
+	});
 </script>

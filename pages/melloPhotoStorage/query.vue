@@ -62,4 +62,8 @@
 			images.value = data.imageArray;
 		});
 	});
+
+	definePageMeta({
+		layout: "default1"
+	});
 </script>

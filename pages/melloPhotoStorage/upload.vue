@@ -18,4 +18,8 @@
 	if (response.fresh !== true && process.client) {
 		navigateTo("/login"); // Adjust the route as necessary
 	}
+
+	definePageMeta({
+		layout: "default1"
+	});
 </script>

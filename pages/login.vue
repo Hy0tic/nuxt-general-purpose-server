@@ -50,6 +50,10 @@
 
 		router.go(0);
 	}
+
+	definePageMeta({
+		layout: "default1"
+	});
 </script>
 
 <template>

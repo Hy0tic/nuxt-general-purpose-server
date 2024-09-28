@@ -50,4 +50,8 @@
 			warning.value = "Invalid Code, try again.";
 		}
 	}
+
+	definePageMeta({
+		layout: "default1"
+	});
 </script>

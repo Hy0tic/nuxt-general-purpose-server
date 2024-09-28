@@ -10,6 +10,10 @@
 		});
 		await navigateTo("/");
 	}
+
+	definePageMeta({
+		layout: "default1"
+	});
 </script>
 
 <template>
