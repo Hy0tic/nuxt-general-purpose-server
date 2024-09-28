@@ -13,7 +13,7 @@
 				Welcome back, {{ username }}
 			</div>
 
-			<div v-if="!isLoading && !twoFaEnabled" class="mt-2">
+			<div v-if="!isLoading && isLoggedIn && !twoFaEnabled" class="mt-2">
 				<NuxtLink to="/generateQRcode">
 					Enable Two Factor Authentication
 				</NuxtLink>
