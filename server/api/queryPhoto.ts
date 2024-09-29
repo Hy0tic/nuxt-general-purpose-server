@@ -10,12 +10,18 @@ export default defineEventHandler(async (event) => {
 
 	const query = getQuery(event);
 	const pageNumber = query.pageNumber ?? 0;
+	const imageCountPerPage = Number(query.imageCountPerPage) ?? 30;
+	const offset = Number(pageNumber) * Number(imageCountPerPage);
 	// console.log("NUMBER: ", query.pageNumber)
 
 	// //const query = "select * from \"Photo\" p order by \"UploadDate\" desc limit 1 offset 0";
 
 	const queryResult: any =
-		await prisma.$queryRaw`select * from "Photo" p order by "UploadDate" desc limit 5 offset ${Number(pageNumber)}`; // note: to go to next page, you have to add amount of items on a page to offset, eg: if page limit is 25, add 25 to offset to go to next page.
+		await prisma.$queryRaw`
+			select * from "Photo" p
+			order by "UploadDate" desc 
+			limit ${imageCountPerPage} offset ${offset}
+		`; // note: to go to next page, you have to add amount of items on a page to offset, eg: if page limit is 25, add 25 to offset to go to next page.
 
 	// console.log(queryResult)
 

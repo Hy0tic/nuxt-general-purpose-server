@@ -56,7 +56,8 @@
 		await $fetch("/api/queryPhoto", {
 			method: "GET",
 			params: {
-				pageNumber: 0
+				pageNumber: 0,
+				imageCountPerPage: 30
 			}
 		}).then((data) => {
 			images.value = data.imageArray;
