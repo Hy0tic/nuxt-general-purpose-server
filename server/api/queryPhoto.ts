@@ -16,8 +16,7 @@ export default defineEventHandler(async (event) => {
 
 	// //const query = "select * from \"Photo\" p order by \"UploadDate\" desc limit 1 offset 0";
 
-	const queryResult: any =
-		await prisma.$queryRaw`
+	const queryResult: any = await prisma.$queryRaw`
 			select * from "Photo" p
 			order by "UploadDate" desc 
 			limit ${imageCountPerPage} offset ${offset}
