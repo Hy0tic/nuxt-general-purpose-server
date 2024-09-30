@@ -15,7 +15,7 @@
 		method: "GET"
 	});
 
-	if (response.fresh !== true && process.client) {
+	if (response.fresh !== true && import.meta.client) {
 		navigateTo("/login"); // Adjust the route as necessary
 	}
 
