@@ -62,7 +62,8 @@
 
 	const imageRows = computed(() => {
 		const rows = [];
-		for (let i = 0; i < images.value.length; i += 8) { // Adjust 3 to your desired images per row
+		for (let i = 0; i < images.value.length; i += 8) {
+			// Adjust 3 to your desired images per row
 			rows.push(images.value.slice(i, i + 8));
 		}
 		return rows;
