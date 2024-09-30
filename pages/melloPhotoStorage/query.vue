@@ -1,67 +1,69 @@
 <template>
-	<div class="flex flex-row">
-		<ImageEntry
-			v-for="(image, index) in images"
-			:key="index"
-			:src="image"
-			class="h-36 w-auto rounded-lg"
-			:title="image.title"
-			:url="image.url"
-			:description="image.description"
+	<div class="flex flex-col">
+		<Paginator
+			:rows="imageCountPerPage"
+			:totalRecords="totalRecords"
+			:rowsPerPageOptions="[3, 5, 10, 20, 30, 40, 50]"
+			@page="onPageChange"
 		/>
+		<div class="flex flex-row">
+			<ImageEntry
+				v-for="(image, index) in images"
+				:key="index"
+				:src="image.url"
+				class="h-36 w-auto rounded-lg"
+				:title="image.title"
+				:url="image.url"
+				:description="image.description"
+			/>
+		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
+	import { ref, onBeforeMount } from "vue";
+	import { useRoute, useRouter } from "vue-router";
+	import Paginator from "primevue/paginator";
+
 	type ImageInfo = {
 		title: string;
 		description: string;
 		url: string;
 	};
 
-	const images = ref<ImageInfo[]>([
-		{
-			title: "test image",
-			description: "japan or smthn",
-			url: "https://www.thesprucepets.com/thmb/b_dt6JpFxaD6ROMYy7nVmwuFars=/3504x0/filters:no_upscale():strip_icc()/Pomeranian-GettyImages-1014940472-a6ba0030958a4bbba0eee3e982ee9bc6.jpg"
-		},
-		{
-			title: "sketch",
-			description: "japan or smthn",
-			url: "https://www.thesprucepets.com/thmb/b_dt6JpFxaD6ROMYy7nVmwuFars=/3504x0/filters:no_upscale():strip_icc()/Pomeranian-GettyImages-1014940472-a6ba0030958a4bbba0eee3e982ee9bc6.jpg"
-		},
-		{
-			title: "test image",
-			description: "japan or smthn",
-			url: "https://www.thesprucepets.com/thmb/b_dt6JpFxaD6ROMYy7nVmwuFars=/3504x0/filters:no_upscale():strip_icc()/Pomeranian-GettyImages-1014940472-a6ba0030958a4bbba0eee3e982ee9bc6.jpg"
-		},
-		{
-			title: "test image",
-			description: "japan or smthn",
-			url: "https://www.thesprucepets.com/thmb/b_dt6JpFxaD6ROMYy7nVmwuFars=/3504x0/filters:no_upscale():strip_icc()/Pomeranian-GettyImages-1014940472-a6ba0030958a4bbba0eee3e982ee9bc6.jpg"
-		}
-	]);
+	const route = useRoute();
+	const router = useRouter();
+	const pageNumber = ref(Number(route.params.pageNumber) || 1);
+	const imageCountPerPage = ref(Number(route.params.imageCountPerPage) || 30);
+	const totalRecords = ref(120); // Set this to the actual total number of records if known
+	const images = ref<ImageInfo[]>([]);
 
-	// TODO: handle error
-	onBeforeMount(async () => {
-		const response = await $fetch("/api/auth/amIauthenticated", {
-			method: "GET"
-		});
-
-		if (response.fresh !== true && import.meta.client) {
-			navigateTo("/login"); // Adjust the route as necessary
-		}
-
-		// TODO: error handling
-		await $fetch("/api/queryPhoto", {
+	const fetchImages = async () => {
+		// Fetch images based on current page
+		const response = await $fetch("/api/queryPhoto", {
 			method: "GET",
 			params: {
-				pageNumber: 0,
-				imageCountPerPage: 30
+				pageNumber: pageNumber.value - 1, // API may expect 0-based index
+				imageCountPerPage: imageCountPerPage.value
 			}
-		}).then((data) => {
-			images.value = data.imageArray;
 		});
+		images.value = response.imageArray; // Adjust according to your API response structure
+	};
+
+	const onPageChange = (event: any) => {
+		pageNumber.value = event.page + 1; // PrimeVue sends 0-based index
+		imageCountPerPage.value = event.rows; // Update items per page
+		fetchImages(); // Fetch new images
+	};
+
+	onBeforeMount(async () => {
+		const authResponse = await $fetch("/api/auth/amIauthenticated", {
+			method: "GET"
+		});
+		if (authResponse.fresh !== true && import.meta.client) {
+			router.push("/login");
+		}
+		await fetchImages(); // Initial fetch
 	});
 
 	definePageMeta({
