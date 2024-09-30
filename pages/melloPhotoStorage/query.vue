@@ -48,6 +48,7 @@
 			}
 		});
 		images.value = response.imageArray; // Adjust according to your API response structure
+		totalRecords.value = response.totalImageCount;
 	};
 
 	const onPageChange = (event: any) => {

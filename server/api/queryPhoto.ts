@@ -24,6 +24,8 @@ export default defineEventHandler(async (event) => {
 
 	// console.log(queryResult)
 
+	const totalImageCount = await prisma.photo.count();
+
 	// Mapping the array to the ImageInfo type
 	const imageInfoArray: ImageInfo[] = queryResult.map(
 		(photo: {
@@ -44,7 +46,8 @@ export default defineEventHandler(async (event) => {
 	return {
 		statusCode: 200,
 		message: "retrieved Images successful",
-		imageArray: imageInfoArray
+		imageArray: imageInfoArray,
+		totalImageCount: totalImageCount
 	};
 });
 
