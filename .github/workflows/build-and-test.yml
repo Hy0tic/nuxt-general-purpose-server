@@ -45,7 +45,7 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-            
+
       # Step 5: Build the workflow
       - name: Build the CI workflow
         run: go build -o build

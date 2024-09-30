@@ -12,6 +12,7 @@ func main() {
 	rnr := sys.Runner().WithEnv(map[string]string{
 		"PKGNAME": "cmdio",
 	})
+	defer rnr.Close();
 	
 	err := rnr.Run("echo", "hello from", rnr.Env("PKGNAME"))
 	if err != nil {
