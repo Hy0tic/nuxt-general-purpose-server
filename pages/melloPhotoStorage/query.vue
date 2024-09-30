@@ -6,22 +6,26 @@
 			:rowsPerPageOptions="[3, 5, 10, 20, 30, 40, 50]"
 			@page="onPageChange"
 		/>
-		<div class="flex flex-row">
-			<ImageEntry
-				v-for="(image, index) in images"
-				:key="index"
-				:src="image.url"
-				class="h-36 w-auto rounded-lg"
-				:title="image.title"
-				:url="image.url"
-				:description="image.description"
-			/>
+		<div class="flex flex-col">
+			<template v-for="(row, _) in imageRows" :key="rowIndex">
+				<div class="flex flex-row">
+					<ImageEntry
+						v-for="(image, index) in row"
+						:key="index"
+						:src="image.url"
+						class="h-36 w-auto rounded-lg"
+						:title="image.title"
+						:url="image.url"
+						:description="image.description"
+					/>
+				</div>
+			</template>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-	import { ref, onBeforeMount } from "vue";
+	import { ref, onBeforeMount, computed } from "vue";
 	import { useRoute, useRouter } from "vue-router";
 	import Paginator from "primevue/paginator";
 
@@ -39,7 +43,6 @@
 	const images = ref<ImageInfo[]>([]);
 
 	const fetchImages = async () => {
-		// Fetch images based on current page
 		const response = await $fetch("/api/queryPhoto", {
 			method: "GET",
 			params: {
@@ -56,6 +59,14 @@
 		imageCountPerPage.value = event.rows; // Update items per page
 		fetchImages(); // Fetch new images
 	};
+
+	const imageRows = computed(() => {
+		const rows = [];
+		for (let i = 0; i < images.value.length; i += 8) { // Adjust 3 to your desired images per row
+			rows.push(images.value.slice(i, i + 8));
+		}
+		return rows;
+	});
 
 	onBeforeMount(async () => {
 		const authResponse = await $fetch("/api/auth/amIauthenticated", {
