@@ -21,7 +21,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v4
         with:
-          go-version: '1.22.2' # Specify the Go version (adjust as needed)
+          go-version: "1.22.2" # Specify the Go version (adjust as needed)
 
       # Step 3: Cache Go modules to improve build time
       - name: Cache Go modules
@@ -38,9 +38,9 @@ jobs:
       - name: Install dependencies
         run: go mod tidy
 
-      # Step 5: Build the CLI tool
+      # Step 5: Build the workflow
       - name: Build the CI workflow
         run: go build -o build
 
       - name: Run Go workflow script
-        run: ./build/
+        run: ./build
