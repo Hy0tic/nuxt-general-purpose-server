@@ -41,6 +41,7 @@
 	const imageCountPerPage = ref(Number(route.params.imageCountPerPage) || 30);
 	const totalRecords = ref(120); // Set this to the actual total number of records if known
 	const images = ref<ImageInfo[]>([]);
+	const imageCountPerRow = 8;
 
 	const fetchImages = async () => {
 		const response = await $fetch("/api/queryPhoto", {
@@ -62,9 +63,9 @@
 
 	const imageRows = computed(() => {
 		const rows = [];
-		for (let i = 0; i < images.value.length; i += 8) {
+		for (let i = 0; i < images.value.length; i += imageCountPerRow) {
 			// Adjust 3 to your desired images per row
-			rows.push(images.value.slice(i, i + 8));
+			rows.push(images.value.slice(i, i + imageCountPerRow));
 		}
 		return rows;
 	});
