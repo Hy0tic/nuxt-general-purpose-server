@@ -45,5 +45,10 @@ func main() {
 		log.Fatal(err)
 	}
 
+	err = rnr.Run("echo", "goodbye from", rnr.Env("PKGNAME"))
+	if err != nil {
+		log.Fatal(err)
+	}
+
 
 }
