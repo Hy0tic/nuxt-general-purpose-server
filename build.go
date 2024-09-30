@@ -18,12 +18,17 @@ func main() {
 		log.Fatal(err)
 	}
     
+	err = rnr.Run("npm", "install")
+	if err != nil {
+		log.Fatal(err)
+	}
+
     err = rnr.Run("npx", "prisma", "generate")
     if err != nil {
 		log.Fatal(err)
 	}
 
-    err = rnr.Run("pnpm", "run", "build")
+    err = rnr.Run("npm", "run", "build")
 	if err != nil {
 		log.Fatal(err)
 	}
