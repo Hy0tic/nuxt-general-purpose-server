@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"strings"
 
@@ -18,16 +17,19 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	if _, err := rnr.Get("true"); err == nil {
-		fmt.Println("true always succeeds")
+    
+    err = rnr.Run("npx", "prisma", "generate")
+    if err != nil {
+		log.Fatal(err)
 	}
 
-	if _, err := rnr.Get("false"); err != nil {
-		fmt.Println("false always fails")
+    err = rnr.Run("pnpm", "run", "build")
+	if err != nil {
+		log.Fatal(err)
 	}
-	
-	err = cmdio.Pipe(
+
+    // pipe example
+    err = cmdio.Pipe(
 		rnr.Command("echo", "pIpEs wOrK tOo"),
 		rnr.Command("tr", "A-Z", "a-z"),
 	)
@@ -42,4 +44,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+
 }
