@@ -38,6 +38,14 @@ jobs:
       - name: Install dependencies
         run: go mod tidy
 
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+            
       # Step 5: Build the workflow
       - name: Build the CI workflow
         run: go build -o build
