@@ -20,16 +20,16 @@ func main() {
 
 	err = rnr.Run("which", "aws")
 	if err != nil { log.Fatal(err) }
-    
+
 	// TODO: download node_module cache from S3 bucket
 
-	err = rnr.Run("pnpm", "install")
+	err = rnr.Run(useNpmOrPnpm(), "install")
 	if err != nil { log.Fatal(err) }
 
     err = rnr.Run("npx", "prisma", "generate")
     if err != nil { log.Fatal(err) }
 
-    err = rnr.Run("pnpm", "run", "build")
+    err = rnr.Run(useNpmOrPnpm(), "run", "build")
 	if err != nil { log.Fatal(err) }
 
 	// TODO: update node_module cache in S3 bucket
@@ -39,6 +39,14 @@ func main() {
 
 }
 
+
+func useNpmOrPnpm() string {
+    if err := rnr.Run("which", "pnpm"); err == nil {
+        return "pnpm"
+    } else {
+		return "npm"
+	}
+}
 
 // func writeCache(dst, src string) {
 //     cmdio.MustPipe(
