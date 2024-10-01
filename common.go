@@ -1,9 +1,20 @@
 package main
 
-import "log"
+import (
+	"log"
 
-func installAws() error {
-	err := rnr.Run("curl", "\"https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip\"", "-o", "\"awscliv2.zip\"")
+	"lesiw.io/cmdio"
+)
+
+func installAwsCli(rnr *cmdio.Runner) error {
+	err := rnr.Run("uname", "-m")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// TODO: check CPU architecture
+
+	err = rnr.Run("curl", "\"https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip\"", "-o", "\"awscliv2.zip\"")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -13,19 +24,19 @@ func installAws() error {
 		log.Fatal(err)
 	}
 
-	err = rnr.Run("sudo","./aws/install")
+	err = rnr.Run("sudo", "./aws/install")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	return nil;
+	return nil
 }
 
-func useNpmOrPnpm() string {
+func useNpmOrPnpm(rnr *cmdio.Runner) string {
 	// GH actions runner do not have pnpm pre installed
-    if err := rnr.Run("which", "pnpm"); err == nil {
-        return "pnpm"
-    } else {
+	if err := rnr.Run("which", "pnpm"); err == nil {
+		return "pnpm"
+	} else {
 		return "npm"
 	}
 }
