@@ -6,6 +6,23 @@
 			:rowsPerPageOptions="[3, 5, 10, 20, 30, 40, 50]"
 			@page="onPageChange"
 		/>
+
+		<div class="card m-5 flex flex-row justify-start gap-5">
+			<Dropdown
+				class="md:w-14rem w-60"
+				v-model="selectedFilter"
+				:options="filterOptions"
+				optionLabel="name"
+				placeholder="Select a sort option"
+			/>
+			<input
+				class="w-60 rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+				type="text"
+				v-model="searchQuery"
+				placeholder="Search..."
+			/>
+		</div>
+
 		<div class="flex flex-col">
 			<template v-for="(row, _) in imageRows" :key="rowIndex">
 				<div class="flex flex-row">
@@ -28,6 +45,7 @@
 	import { ref, onBeforeMount, computed } from "vue";
 	import { useRoute, useRouter } from "vue-router";
 	import Paginator from "primevue/paginator";
+	import Dropdown from "primevue/dropdown";
 
 	type ImageInfo = {
 		title: string;
@@ -35,6 +53,13 @@
 		url: string;
 	};
 
+	const filterOptions = ref([
+		{ name: "Newest First" },
+		{ name: "Oldest First" },
+		{ name: "Alphabetical Order" },
+		{ name: "Reverse Alphabetical Order" }
+	]);
+	const selectedFilter = ref<string>();
 	const route = useRoute();
 	const router = useRouter();
 	const pageNumber = ref(Number(route.params.pageNumber) || 1);
@@ -42,6 +67,7 @@
 	const totalRecords = ref(120); // Set this to the actual total number of records if known
 	const images = ref<ImageInfo[]>([]);
 	const imageCountPerRow = 8;
+	const searchQuery = ref("");
 
 	const fetchImages = async () => {
 		const response = await $fetch("/api/queryPhoto", {
