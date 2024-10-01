@@ -42,6 +42,11 @@ func main() {
 		log.Fatal(err)
 	}
 
+	err = rnr.Run("du", "-sh", "./.output")
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	// TODO: update node_module cache in S3 bucket
 
 	err = rnr.Run("echo", "goodbye from", rnr.Env("PKGNAME"))
