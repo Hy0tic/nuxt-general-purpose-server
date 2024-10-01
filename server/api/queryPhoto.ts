@@ -15,9 +15,9 @@ export default defineEventHandler(async (event) => {
 	const imageCountPerPage = Number(query.imageCountPerPage) ?? 30;
 	const offset = Number(pageNumber) * Number(imageCountPerPage);
 
-	let queryResult:any;
+	let queryResult: any;
 
-	if(searchQuery) {
+	if (searchQuery) {
 		queryResult = await prisma.$queryRaw`
 			SELECT *
 			FROM "Photo" p
@@ -25,8 +25,7 @@ export default defineEventHandler(async (event) => {
 			ORDER BY "UploadDate" DESC
 			LIMIT ${imageCountPerPage} OFFSET ${offset};
 		`;
-	}
-	else {
+	} else {
 		queryResult = await prisma.$queryRaw`
 				select * from "Photo" p
 				order by "UploadDate" desc 

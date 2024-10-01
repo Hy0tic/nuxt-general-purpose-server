@@ -22,9 +22,7 @@
 				placeholder="Search..."
 			/>
 
-			<Button @click="search">
-				Search
-			</Button>
+			<Button @click="search"> Search </Button>
 		</div>
 
 		<div class="flex flex-col">
@@ -64,17 +62,17 @@
 		{ name: "Reverse Alphabetical Order" }
 	]);
 	const selectedFilter = ref<string>();
-	
+
 	const route = useRoute();
 	const router = useRouter();
-	
+
 	const pageNumber = ref(Number(route.query.pageNumber) || 1);
 	const imageCountPerPage = ref(Number(route.query.imageCountPerPage) || 30);
 	const searchQuery = ref(route.query.searchQuery);
 
 	const totalRecords = ref<number>(); // Set this to the actual total number of records if known
 	const imageCountPerRow = 8;
-	
+
 	const images = ref<ImageInfo[]>([]);
 
 	const search = () => {
@@ -128,7 +126,7 @@
 
 	onMounted(async () => {
 		await fetchImages(); // Initial fetch
-	})
+	});
 
 	definePageMeta({
 		layout: "default1"
