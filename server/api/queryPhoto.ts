@@ -1,3 +1,4 @@
+import { off } from "process";
 import ConstructR2Url from "../utils/UrlConstruct";
 
 export default defineEventHandler(async (event) => {
@@ -9,20 +10,29 @@ export default defineEventHandler(async (event) => {
 	}
 
 	const query = getQuery(event);
+	const searchQuery = query.searchQuery?.toString();
 	const pageNumber = query.pageNumber ?? 0;
 	const imageCountPerPage = Number(query.imageCountPerPage) ?? 30;
 	const offset = Number(pageNumber) * Number(imageCountPerPage);
-	// console.log("NUMBER: ", query.pageNumber)
 
-	// //const query = "select * from \"Photo\" p order by \"UploadDate\" desc limit 1 offset 0";
+	let queryResult:any;
 
-	const queryResult: any = await prisma.$queryRaw`
-			select * from "Photo" p
-			order by "UploadDate" desc 
-			limit ${imageCountPerPage} offset ${offset}
-		`; // note: to go to next page, you have to add amount of items on a page to offset, eg: if page limit is 25, add 25 to offset to go to next page.
-
-	// console.log(queryResult)
+	if(searchQuery) {
+		queryResult = await prisma.$queryRaw`
+			SELECT *
+			FROM "Photo" p
+			WHERE LOWER(p."Title") LIKE '%' || LOWER(${searchQuery}) || '%'
+			ORDER BY "UploadDate" DESC
+			LIMIT ${imageCountPerPage} OFFSET ${offset};
+		`;
+	}
+	else {
+		queryResult = await prisma.$queryRaw`
+				select * from "Photo" p
+				order by "UploadDate" desc 
+				limit ${imageCountPerPage} offset ${offset}
+			`; // note: to go to next page, you have to add amount of items on a page to offset, eg: if page limit is 25, add 25 to offset to go to next page.
+	}
 
 	const totalImageCount = await prisma.photo.count();
 

@@ -21,6 +21,10 @@
 				v-model="searchQuery"
 				placeholder="Search..."
 			/>
+
+			<Button @click="search">
+				Search
+			</Button>
 		</div>
 
 		<div class="flex flex-col">
@@ -60,21 +64,38 @@
 		{ name: "Reverse Alphabetical Order" }
 	]);
 	const selectedFilter = ref<string>();
+	
 	const route = useRoute();
 	const router = useRouter();
-	const pageNumber = ref(Number(route.params.pageNumber) || 1);
-	const imageCountPerPage = ref(Number(route.params.imageCountPerPage) || 30);
-	const totalRecords = ref(120); // Set this to the actual total number of records if known
-	const images = ref<ImageInfo[]>([]);
+	
+	const pageNumber = ref(Number(route.query.pageNumber) || 1);
+	const imageCountPerPage = ref(Number(route.query.imageCountPerPage) || 30);
+	const searchQuery = ref(route.query.searchQuery);
+
+	const totalRecords = ref<number>(); // Set this to the actual total number of records if known
 	const imageCountPerRow = 8;
-	const searchQuery = ref("");
+	
+	const images = ref<ImageInfo[]>([]);
+
+	const search = () => {
+		// Build query parameters
+		const query = {
+			pageNumber: pageNumber.value,
+			imageCountPerPage: imageCountPerPage.value,
+			searchQuery: searchQuery.value
+		};
+
+		// Navigate to the same route with new query parameters
+		router.push({ query });
+	};
 
 	const fetchImages = async () => {
 		const response = await $fetch("/api/queryPhoto", {
 			method: "GET",
 			params: {
-				pageNumber: pageNumber.value - 1, // API may expect 0-based index
-				imageCountPerPage: imageCountPerPage.value
+				pageNumber: pageNumber.value - 1, // API expect 0-based index
+				imageCountPerPage: imageCountPerPage.value,
+				searchQuery: searchQuery.value
 			}
 		});
 		images.value = response.imageArray; // Adjust according to your API response structure
@@ -103,8 +124,11 @@
 		if (authResponse.fresh !== true && import.meta.client) {
 			router.push("/login");
 		}
-		await fetchImages(); // Initial fetch
 	});
+
+	onMounted(async () => {
+		await fetchImages(); // Initial fetch
+	})
 
 	definePageMeta({
 		layout: "default1"
