@@ -75,7 +75,7 @@
 
 	const images = ref<ImageInfo[]>([]);
 
-	const search = () => {
+	const search = async () => {
 		// Build query parameters
 		const query = {
 			pageNumber: pageNumber.value,
@@ -85,6 +85,7 @@
 
 		// Navigate to the same route with new query parameters
 		router.push({ query });
+		await fetchImages();
 	};
 
 	const fetchImages = async () => {
@@ -96,6 +97,7 @@
 				searchQuery: searchQuery.value
 			}
 		});
+		console.log("fetched images");
 		images.value = response.imageArray; // Adjust according to your API response structure
 		totalRecords.value = response.totalImageCount;
 	};
