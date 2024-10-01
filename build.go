@@ -19,7 +19,9 @@ func main() {
 	if err != nil { log.Fatal(err) }
 
 	err = rnr.Run("which", "aws")
-	if err != nil { log.Fatal(err) }
+	if err != nil { 
+		installAws()
+	}
 
 	// TODO: download node_module cache from S3 bucket
 
@@ -41,11 +43,31 @@ func main() {
 
 
 func useNpmOrPnpm() string {
+	// GH actions runner do not have pnpm pre installed
     if err := rnr.Run("which", "pnpm"); err == nil {
         return "pnpm"
     } else {
 		return "npm"
 	}
+}
+
+func installAws() error {
+	err := rnr.Run("curl", "\"https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip\"", "-o", "\"awscliv2.zip\"")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = rnr.Run("unzip", "awscliv2.zip")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = rnr.Run("sudo","./aws/install")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return nil;
 }
 
 // func writeCache(dst, src string) {
