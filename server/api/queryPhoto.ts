@@ -1,4 +1,3 @@
-import { off } from "process";
 import ConstructR2Url from "../utils/UrlConstruct";
 
 export default defineEventHandler(async (event) => {

@@ -1,5 +1,4 @@
-import { PrismaClient } from "@prisma/client";
-import { Photo } from "@prisma/client";
+import { PrismaClient, Photo } from "@prisma/client";
 
 export const prisma = new PrismaClient();
 

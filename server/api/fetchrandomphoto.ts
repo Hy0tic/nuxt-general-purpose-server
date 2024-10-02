@@ -1,7 +1,7 @@
 import { defineEventHandler } from "h3";
 import { FetchRandomPhoto } from "../utils/PostgresSqlDb";
-import { BucketDomain } from "../utils/R2";
 import { Photo } from "@prisma/client";
+import ConstructR2Url from "../utils/UrlConstruct";
 
 export default defineEventHandler(async (event) => {
 	const res: Photo = await FetchRandomPhoto();
@@ -12,8 +12,3 @@ export default defineEventHandler(async (event) => {
 		status: "success"
 	};
 });
-
-function ConstructR2Url(fileKey: string): string {
-	var url = `https://${BucketDomain}/${fileKey}`;
-	return url;
-}
