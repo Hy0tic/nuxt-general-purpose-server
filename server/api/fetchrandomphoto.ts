@@ -9,6 +9,6 @@ export default defineEventHandler(async (event) => {
 	return {
 		message: "random photo here",
 		result: ConstructR2Url(res.FileKey),
-		status: "success"
+		statusCode: 200
 	};
 });
