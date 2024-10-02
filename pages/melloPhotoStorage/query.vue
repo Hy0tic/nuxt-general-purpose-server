@@ -97,7 +97,7 @@
 				searchQuery: searchQuery.value
 			}
 		});
-		console.log("fetched images");
+		
 		images.value = response.imageArray; // Adjust according to your API response structure
 		totalRecords.value = response.totalImageCount;
 	};
