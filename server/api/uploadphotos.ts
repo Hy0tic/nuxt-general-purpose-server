@@ -29,7 +29,7 @@ export default defineEventHandler(async (event) => {
 		const { files } = await new Promise<{
 			files: formidable.Files;
 		}>((resolve, reject) => {
-			form.parse(event.req, (err: any, fields: any, files: any) => {
+			form.parse(event.node.req, (err: any, fields: any, files: any) => {
 				if (err) reject(err);
 				else resolve({ files });
 			});
