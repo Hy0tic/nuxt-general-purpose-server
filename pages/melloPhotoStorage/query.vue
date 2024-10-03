@@ -23,6 +23,8 @@
 			/>
 
 			<Button @click="search"> Search </Button>
+
+			<Button @click="navigateToUploadPage"> Go To Upload Page </Button>
 		</div>
 
 		<div class="flex flex-col">
@@ -101,6 +103,10 @@
 		router.push({ query });
 		await fetchImages();
 	};
+
+	const navigateToUploadPage = async () => {
+		await router.push("/mellophotostorage/upload");
+	}
 
 	const fetchImages = async () => {
 		isLoading.value = true;

@@ -3,6 +3,7 @@
 		<!-- <div class="flex flex-wrap justify-center items-center gap-5">
         <img v-for="(image, index) in images" :key="index" :src="image" class="h-36 w-auto rounded-lg" alt="Random Photo" />
       </div> -->
+		<Button @click="navigateToPhotoPage"> Go To Photo Page </Button>
 		<UploadBox />
 		<!-- TODO: let user upload multiple photos at once -->
 	</div>
@@ -17,6 +18,12 @@
 
 	if (response.fresh !== true && import.meta.client) {
 		navigateTo("/login"); // Adjust the route as necessary
+	}
+
+	const router = useRouter();
+
+	const navigateToPhotoPage = async () => {
+		await router.push("/melloPhotoStorage/query");
 	}
 
 	definePageMeta({
