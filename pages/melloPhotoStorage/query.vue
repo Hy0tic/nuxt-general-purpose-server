@@ -39,12 +39,12 @@
 					/>
 				</div>
 			</template>
-			<ProgressSpinner 
+			<ProgressSpinner
 				v-if="isLoading"
-				style="width: 50px; height: 50px" 
-				strokeWidth="8" 
-				fill="transparent" 
-				animationDuration=".5s" 
+				style="width: 50px; height: 50px"
+				strokeWidth="8"
+				fill="transparent"
+				animationDuration=".5s"
 				aria-label="Custom ProgressSpinner"
 			/>
 		</div>
@@ -56,7 +56,7 @@
 	import { useRoute, useRouter } from "vue-router";
 	import Paginator from "primevue/paginator";
 	import Dropdown from "primevue/dropdown";
-	import ProgressSpinner from 'primevue/progressspinner';
+	import ProgressSpinner from "primevue/progressspinner";
 
 	type ImageInfo = {
 		title: string;
@@ -65,12 +65,15 @@
 	};
 
 	const filterOptions = ref([
-		{ name: "Newest First" },
-		{ name: "Oldest First" },
-		{ name: "Alphabetical Order" },
-		{ name: "Reverse Alphabetical Order" }
+		{ name: "Newest First", sortOption: "SORT_BY_DATE" },
+		{ name: "Oldest First", sortOption: "SORT_BY_DATE_REVERSE" },
+		{ name: "Alphabetical Order", sortOption: "SORT_BY_TITLE" },
+		{ name: "Reverse Alphabetical Order", sortOption: "SORT_BY_TITLE_REVERSE" }
 	]);
-	const selectedFilter = ref<string>();
+	const selectedFilter = ref({
+		name: "Newest First",
+		sortOption: "SORT_BY_DATE"
+	});
 
 	const route = useRoute();
 	const router = useRouter();
@@ -90,7 +93,8 @@
 		const query = {
 			pageNumber: pageNumber.value,
 			imageCountPerPage: imageCountPerPage.value,
-			searchQuery: searchQuery.value
+			searchQuery: searchQuery.value,
+			sortOption: selectedFilter.value?.sortOption
 		};
 
 		// Navigate to the same route with new query parameters
@@ -99,13 +103,14 @@
 	};
 
 	const fetchImages = async () => {
-		isLoading.value = true
+		isLoading.value = true;
 		const response = await $fetch("/api/queryPhoto", {
 			method: "GET",
 			params: {
 				pageNumber: pageNumber.value - 1, // API expect 0-based index
 				imageCountPerPage: imageCountPerPage.value,
-				searchQuery: searchQuery.value
+				searchQuery: searchQuery.value,
+				sortOption: selectedFilter.value?.sortOption
 			}
 		});
 
@@ -115,10 +120,10 @@
 		isLoading.value = false;
 	};
 
-	const onPageChange = (event: any) => {
+	const onPageChange = async (event: any) => {
 		pageNumber.value = event.page + 1; // PrimeVue sends 0-based index
 		imageCountPerPage.value = event.rows; // Update items per page
-		fetchImages(); // Fetch new images
+		await fetchImages(); // Fetch new images
 	};
 
 	const imageRows = computed(() => {

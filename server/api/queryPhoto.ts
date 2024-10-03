@@ -13,23 +13,28 @@ export default defineEventHandler(async (event) => {
 	const pageNumber = query.pageNumber ?? 0;
 	const imageCountPerPage = Number(query.imageCountPerPage) ?? 30;
 	const offset = Number(pageNumber) * Number(imageCountPerPage);
+	const sortOption: string = query.sortOption?.toString() ?? "";
 
 	let queryResult: any;
 
+	const sortQuery: string = SortQueryOptions.get(sortOption) ?? "";
+
+	// TODO: is this vulnerable to SQL injection?
 	if (searchQuery) {
-		queryResult = await prisma.$queryRaw`
+		queryResult = await prisma.$queryRawUnsafe(`
 			SELECT *
 			FROM "Photo" p
 			WHERE LOWER(p."Title") LIKE '%' || LOWER(${searchQuery}) || '%'
-			ORDER BY "UploadDate" DESC
-			LIMIT ${imageCountPerPage} OFFSET ${offset};
-		`;
+			${sortQuery} 
+			LIMIT ${imageCountPerPage} OFFSET ${offset}
+		`);
 	} else {
-		queryResult = await prisma.$queryRaw`
-				select * from "Photo" p
-				order by "UploadDate" desc 
-				limit ${imageCountPerPage} offset ${offset}
-			`; // note: to go to next page, you have to add amount of items on a page to offset, eg: if page limit is 25, add 25 to offset to go to next page.
+		queryResult = await prisma.$queryRawUnsafe(`
+			SELECT *
+			FROM "Photo" p
+			${sortQuery} 
+			LIMIT ${imageCountPerPage} OFFSET ${offset}
+		`);
 	}
 
 	const totalImageCount = await prisma.photo.count();
@@ -49,8 +54,6 @@ export default defineEventHandler(async (event) => {
 		})
 	);
 
-	// get page number as parameter
-
 	return {
 		statusCode: 200,
 		message: "retrieved Images successful",
@@ -65,3 +68,11 @@ type ImageInfo = {
 	description: string;
 	url: string;
 };
+
+// mapping query options
+const SortQueryOptions: Map<string, string> = new Map([
+	["SORT_BY_DATE", 'ORDER BY "UploadDate" DESC'],
+	["SORT_BY_TITLE", 'ORDER BY LOWER("Title") ASC'],
+	["SORT_BY_DATE_REVERSE", 'ORDER BY "UploadDate" ASC'],
+	["SORT_BY_TITLE_REVERSE", 'ORDER BY LOWER("Title") DESC']
+]);
