@@ -26,7 +26,7 @@
 		</div>
 
 		<div class="flex flex-col">
-			<template v-for="(row, _) in imageRows" :key="rowIndex">
+			<template v-if="!isLoading" v-for="(row, _) in imageRows" :key="rowIndex">
 				<div class="flex flex-row">
 					<ImageEntry
 						v-for="(image, index) in row"
@@ -39,6 +39,14 @@
 					/>
 				</div>
 			</template>
+			<ProgressSpinner 
+				v-if="isLoading"
+				style="width: 50px; height: 50px" 
+				strokeWidth="8" 
+				fill="transparent" 
+				animationDuration=".5s" 
+				aria-label="Custom ProgressSpinner"
+			/>
 		</div>
 	</div>
 </template>
@@ -48,6 +56,7 @@
 	import { useRoute, useRouter } from "vue-router";
 	import Paginator from "primevue/paginator";
 	import Dropdown from "primevue/dropdown";
+	import ProgressSpinner from 'primevue/progressspinner';
 
 	type ImageInfo = {
 		title: string;
@@ -74,6 +83,7 @@
 	const imageCountPerRow = 8;
 
 	const images = ref<ImageInfo[]>([]);
+	const isLoading = ref<boolean>(true);
 
 	const search = async () => {
 		// Build query parameters
@@ -89,6 +99,7 @@
 	};
 
 	const fetchImages = async () => {
+		isLoading.value = true
 		const response = await $fetch("/api/queryPhoto", {
 			method: "GET",
 			params: {
@@ -100,6 +111,8 @@
 
 		images.value = response.imageArray; // Adjust according to your API response structure
 		totalRecords.value = response.totalImageCount;
+
+		isLoading.value = false;
 	};
 
 	const onPageChange = (event: any) => {
