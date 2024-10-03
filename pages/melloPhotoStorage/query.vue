@@ -106,7 +106,7 @@
 
 	const navigateToUploadPage = async () => {
 		await router.push("/mellophotostorage/upload");
-	}
+	};
 
 	const fetchImages = async () => {
 		isLoading.value = true;

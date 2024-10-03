@@ -24,7 +24,7 @@
 
 	const navigateToPhotoPage = async () => {
 		await router.push("/melloPhotoStorage/query");
-	}
+	};
 
 	definePageMeta({
 		layout: "default1"
