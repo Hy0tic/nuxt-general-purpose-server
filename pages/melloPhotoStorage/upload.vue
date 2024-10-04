@@ -34,7 +34,7 @@
 								></InputText>
 							</InputGroup>
 
-							<Button type="submit" :disabled="!selectedFile">Upload</Button>
+							<Button type="submit" :disabled="!selectedFileField">Upload</Button>
 						</div>
 					</form>
 				</TabPanel>
@@ -123,6 +123,11 @@
 		totalSizePercent.value = totalSize.value / 10;
 		callback();
 	};
+
+	// Handles file change event
+	function handleFileChange(event) {
+		selectedFileField.value = event.target.files[0];
+	}
 
 	definePageMeta({
 		layout: "default1"

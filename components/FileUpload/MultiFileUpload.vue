@@ -144,6 +144,7 @@
 </template>
 
 <script setup lang="ts">
+	import "primeicons/primeicons.css";
 	interface Props {
 		size: number;
 		onSelectedFiles: (event: any) => void;
