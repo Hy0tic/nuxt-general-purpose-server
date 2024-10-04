@@ -34,7 +34,9 @@
 								></InputText>
 							</InputGroup>
 
-							<Button type="submit" :disabled="!selectedFileField">Upload</Button>
+							<Button type="submit" :disabled="!selectedFileField"
+								>Upload</Button
+							>
 						</div>
 					</form>
 				</TabPanel>
