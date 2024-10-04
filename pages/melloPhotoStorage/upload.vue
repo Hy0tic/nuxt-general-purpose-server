@@ -24,12 +24,12 @@
 
 						<div class="m-5 flex flex-col gap-10">
 							<InputGroup>
-								<InputText v-model="title" placeholder="Enter title" />
+								<InputText v-model="titleField" placeholder="Enter title" />
 							</InputGroup>
 
 							<InputGroup>
 								<InputText
-									v-model="description"
+									v-model="descriptionField"
 									placeholder="Enter description"
 								></InputText>
 							</InputGroup>
