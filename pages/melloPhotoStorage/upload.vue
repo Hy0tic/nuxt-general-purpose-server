@@ -97,12 +97,12 @@
 		formData.append("description", descriptionField.value); // Append the description
 
 		try {
-			// const response = await fetch("/api/uploadphoto", {
-			// 	method: "POST",
-			// 	body: formData
-			// });
+			const response = await fetch("/api/uploadphoto", {
+				method: "POST",
+				body: formData
+			});
 
-			if (false) {
+			if (response.ok) {
 				showSuccessToast();
 			} else {
 				showErrorToast();
