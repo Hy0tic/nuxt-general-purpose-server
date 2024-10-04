@@ -1,4 +1,5 @@
 <template>
+	<Toast />
 	<div class="mt-40 flex flex-col items-center justify-center gap-10">
 		<!-- <div class="flex flex-wrap justify-center items-center gap-5">
         <img v-for="(image, index) in images" :key="index" :src="image" class="h-36 w-auto rounded-lg" alt="Random Photo" />
@@ -61,6 +62,8 @@
 </template>
 
 <script setup>
+	import { useToast } from "primevue/usetoast";
+
 	const response = await $fetch("/api/auth/amIauthenticated", {
 		method: "GET"
 	});
@@ -70,6 +73,7 @@
 	}
 
 	const router = useRouter();
+	const toast = useToast();
 
 	const navigateToPhotoPage = async () => {
 		await router.push("/melloPhotoStorage/query");
@@ -93,15 +97,15 @@
 		formData.append("description", descriptionField.value); // Append the description
 
 		try {
-			const response = await fetch("/api/uploadphoto", {
-				method: "POST",
-				body: formData
-			});
+			// const response = await fetch("/api/uploadphoto", {
+			// 	method: "POST",
+			// 	body: formData
+			// });
 
-			if (response.ok) {
-				alert("Upload successful!");
+			if (false) {
+				showSuccessToast();
 			} else {
-				alert("Upload failed.");
+				showErrorToast();
 			}
 		} catch (error) {
 			console.error("Error uploading file:", error);
@@ -130,6 +134,14 @@
 	function handleFileChange(event) {
 		selectedFileField.value = event.target.files[0];
 	}
+
+	const showSuccessToast = () => {
+		toast.add({ severity: 'success', summary: 'Successfully Uploaded File', detail: 'File Uploaded', life: 3000 });
+	};
+
+	const showErrorToast = () => {
+		toast.add({ severity: 'error', summary: 'Error Uploading File', detail: 'Failed To Upload File', life: 3000 });
+	};
 
 	definePageMeta({
 		layout: "default1"
