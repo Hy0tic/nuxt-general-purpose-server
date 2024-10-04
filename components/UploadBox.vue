@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
 	<Tabs value="0" class="h-96 w-96 rounded-lg bg-[rgb(24,24,27)]">
 		<TabList class="">
 			<Tab value="0">Single Upload</Tab>
@@ -85,6 +85,7 @@
 								</ProgressBar>
 							</div>
 						</template>
+
 						<template
 							#content="{
 								files,
@@ -173,6 +174,7 @@
 								</div>
 							</div>
 						</template>
+						
 						<template #empty>
 							<div class="flex flex-col items-center justify-center">
 								<i
@@ -305,4 +307,4 @@
 
 		return `${formattedSize} ${sizes[i]}`;
 	};
-</script>
+</script> -->
