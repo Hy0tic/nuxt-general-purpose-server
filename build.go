@@ -42,6 +42,7 @@ func main() {
 		log.Fatal(err)
 	}
 
+	// print output folder size
 	err = rnr.Run("du", "-sh", "./.output")
 	if err != nil {
 		log.Fatal(err)
