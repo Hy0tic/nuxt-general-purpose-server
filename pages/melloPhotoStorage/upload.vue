@@ -136,11 +136,21 @@
 	}
 
 	const showSuccessToast = () => {
-		toast.add({ severity: 'success', summary: 'Successfully Uploaded File', detail: 'File Uploaded', life: 3000 });
+		toast.add({
+			severity: "success",
+			summary: "Successfully Uploaded File",
+			detail: "File Uploaded",
+			life: 3000
+		});
 	};
 
 	const showErrorToast = () => {
-		toast.add({ severity: 'error', summary: 'Error Uploading File', detail: 'Failed To Upload File', life: 3000 });
+		toast.add({
+			severity: "error",
+			summary: "Error Uploading File",
+			detail: "Failed To Upload File",
+			life: 3000
+		});
 	};
 
 	definePageMeta({
