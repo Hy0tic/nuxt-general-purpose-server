@@ -10,8 +10,6 @@ var rnr = sys.Runner().WithEnv(map[string]string{
 	"PKGNAME": "cmdio",
 })
 
-// const cacheBucket = "awkspace-cmdio-cache-test"
-
 func main() {
 	defer rnr.Close()
 
@@ -38,6 +36,11 @@ func main() {
 	}
 
 	err = rnr.Run(useNpmOrPnpm(rnr), "run", "build")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = WriteBuildInfo("./.output")
 	if err != nil {
 		log.Fatal(err)
 	}
