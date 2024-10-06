@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="container m-5 flex h-96 max-h-96 flex-col rounded-md bg-[rgb(41,40,40)]"
+		class="container m-5 flex h-auto max-h-fit flex-col rounded-md bg-[rgb(41,40,40)]"
 	>
 		<Image :src="url" class="rounded-lg" alt="image" width="255px" />
 
@@ -8,7 +8,7 @@
 			{{ title }}
 		</div>
 
-		<div class="font-thin text-center">
+		<div class="text-center font-thin">
 			{{ formattedDate }}
 		</div>
 	</div>
@@ -20,16 +20,15 @@
 
 	const date: Date = new Date(props.uploadDateAsString);
 	const options: Intl.DateTimeFormatOptions = {
-		year: 'numeric',
-		month: 'numeric',
-		day: 'numeric',
-		hour: '2-digit',
-		minute: '2-digit',
-		second: '2-digit', // Include seconds if needed
+		year: "numeric",
+		month: "numeric",
+		day: "numeric",
+		hour: "2-digit",
+		minute: "2-digit",
+		second: "2-digit", // Include seconds if needed
 		hour12: true // Set to false for 24-hour format
 	};
-	const formattedDate: string = date.toLocaleDateString('en-US', options);
-
+	const formattedDate: string = date.toLocaleDateString("en-US", options);
 
 	interface Props {
 		title: string;
@@ -37,5 +36,4 @@
 		url: string;
 		uploadDateAsString: string;
 	}
-
 </script>
