@@ -38,6 +38,7 @@
 						:title="image.title"
 						:url="image.url"
 						:description="image.description"
+						:upload-date-as-string="image.uploadDate"
 					/>
 				</div>
 			</template>
@@ -64,6 +65,7 @@
 		title: string;
 		description: string;
 		url: string;
+		uploadDate: string;
 	};
 
 	const filterOptions = ref([

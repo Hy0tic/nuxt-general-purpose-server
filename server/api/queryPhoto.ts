@@ -43,13 +43,15 @@ export default defineEventHandler(async (event) => {
 	const imageInfoArray: ImageInfo[] = queryResult.map(
 		(photo: {
 			Id: string;
-			UploadDate: any;
 			Title: any;
 			Description: any;
+			UploadDate: any;
 			FileKey: any;
 		}) => ({
+			id: photo.Id,
 			title: photo.Title,
 			description: photo.Description,
+			uploadDate: photo.UploadDate,
 			url: ConstructR2Url(photo.FileKey) // Constructing URL using the FileKey
 		})
 	);
@@ -67,6 +69,7 @@ type ImageInfo = {
 	title: string;
 	description: string;
 	url: string;
+	uploadDate: Date;
 };
 
 // mapping query options
