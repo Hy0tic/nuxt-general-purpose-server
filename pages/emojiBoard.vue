@@ -1,31 +1,30 @@
 <template>
-    <div class="bg-black h-screen w-screen flex justify-center">
-        <div class="m-4 flex flex-col items-center gap-2 bg-[rgb(30,30,30)] w-fit h-fit rounded-xl">
-            <div class="flex flex-row">
-                <input
-                    class="w-60 rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-400 m-5"
-                    type="text"
-                    placeholder="Search..."
-                />
-                <Button class="m-5 items-center">
-                    Search
-                </Button>
+	<div class="flex h-screen w-screen justify-center bg-black">
+		<div
+			class="m-4 flex h-fit w-fit flex-col items-center gap-2 rounded-xl bg-[rgb(30,30,30)]"
+		>
+			<div class="flex flex-row">
+				<input
+					class="m-5 w-60 rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+					type="text"
+					placeholder="Search..."
+				/>
+				<Button class="m-5 items-center"> Search </Button>
+			</div>
 
-            </div>
-
-            <div v-for="(row, _) in emojiRows" class="flex flex-row gap-2">
-                <EmojiBoardEmojiContainer 
-                    v-for="(emoji, _) in row"
-                    :name="emoji.Name"
-                    :url="emoji.url" 
-                 />
-            </div>
-        </div>
-    </div>
+			<div v-for="(row, _) in emojiRows" class="flex flex-row gap-2">
+				<EmojiBoardEmojiContainer
+					v-for="(emoji, _) in row"
+					:name="emoji.Name"
+					:url="emoji.url"
+				/>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script setup lang="ts">
-    import Button from 'primevue/button';
+	import Button from "primevue/button";
 	interface EmojiInfo {
 		Name: string;
 		url: string;
