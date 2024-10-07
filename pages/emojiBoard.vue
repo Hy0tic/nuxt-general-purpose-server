@@ -30,10 +30,10 @@
 		url: string;
 	}
 
-    const catPeek = {
-			Name: "catpeek",
-			url: "https://cdn.discordapp.com/emojis/1122425487701069846.webp?size=128&quality=lossless"
-		}
+	const catPeek = {
+		Name: "catpeek",
+		url: "https://cdn.discordapp.com/emojis/1122425487701069846.webp?size=128&quality=lossless"
+	};
 	const sampleEmojiData = [
 		{
 			Name: "hug",
@@ -59,12 +59,12 @@
 			Name: "catbite",
 			url: "https://cdn.discordapp.com/emojis/787956066947170364.gif?size=128&quality=lossless"
 		},
-        catPeek,
-        catPeek,
-        catPeek,
-        catPeek,
-        catPeek,
-        catPeek
+		catPeek,
+		catPeek,
+		catPeek,
+		catPeek,
+		catPeek,
+		catPeek
 	];
 	const EmojiOnDisplay = ref<EmojiInfo[]>(sampleEmojiData);
 	const EmojiCountPerRow = 14;
