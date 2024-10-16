@@ -43,7 +43,6 @@
 	</div>
 </template> -->
 
-<script>
-</script>
+<script></script>
 
 <template></template>
