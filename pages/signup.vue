@@ -1,4 +1,4 @@
-<!--pages/signup.vue-->
+<!-- pages/signup.vue
 <script lang="ts" setup>
 	import Button from "primevue/button";
 	import InputText from "primevue/inputtext";
@@ -41,4 +41,4 @@
 			</form>
 		</div>
 	</div>
-</template>
+</template> -->
